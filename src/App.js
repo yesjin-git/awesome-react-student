@@ -8,6 +8,18 @@ import './App.css';
 class App extends Component {
   render() {
     return (
+      <div>
+        <Navbar/>
+        <Main/>
+        <Playlist/>
+      </div>
+    )
+  }
+}
+
+class Navbar extends Component {
+  render() {
+    return (
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="#">ITube</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,6 +40,26 @@ class App extends Component {
           </ul>
         </div>
       </nav>
+    )
+  }
+}
+
+class Main extends Component {
+  render() {
+    return (
+      <div>
+        FOR MAIN PAGE
+      </div>
+    )
+  }
+}
+
+class Playlist extends Component {
+  render() {
+    return (
+      <div>
+        FOR PLAYLIST
+      </div>
     )
   }
 }
