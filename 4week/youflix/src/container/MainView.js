@@ -65,7 +65,7 @@ class MainView extends Component {
 	    }
     ]
       this.state = {
-      	fullContent: this.src[0],
+      	fullContent: {},
 	  	contents : this.selectContents(this.src,7)
 	  };
 
@@ -134,6 +134,7 @@ class MainView extends Component {
   	}, 100000)
   }
 
+<<<<<<< HEAD
   handleContentChange = (content) => {
     this.setState({
       fullContent:content
@@ -145,6 +146,13 @@ class MainView extends Component {
       <div className="mainView">
       	<FullContent content={this.state.fullContent}/>
        	<ConetntList contents={this.state.contents} onClick={this.handleContentChange} />
+=======
+  render() {
+    return (
+      <div className="mainView">
+      	<FullContent content={this.src[0]}/>
+       	<ConetntList contents={this.state.contents} />
+>>>>>>> 776c88c782b3f457c788913f40020437f2843ee0
       </div>
     );
   }

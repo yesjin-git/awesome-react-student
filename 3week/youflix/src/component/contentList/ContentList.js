@@ -18,8 +18,8 @@ class ContentList extends Component {
   					data.map((c,index) => {
 			      		return (
 			      		  <div className="col-md-3" key={index}>
-					      	<Content content={c} onClick={this.props.onClick}/>
-					      </div>
+					      	  <Content content={c} onClick={this.props.onClick}/>
+					        </div>
 			      		)
 			      	})
   				}

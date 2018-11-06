@@ -65,8 +65,8 @@ class MainView extends Component {
 	    }
     ]
       this.state = {
-      	fullContent: this.src[0],
-	  	contents : this.selectContents(this.src,7)
+      	fullContent: {},
+	  	  contents : this.selectContents(this.src,7)
 	  };
 
 	}

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import "./Content.css";
 
+
 const ContentView = (props) => {
       let url = "/view/"+props.id
       return (<NavLink to={url}>
