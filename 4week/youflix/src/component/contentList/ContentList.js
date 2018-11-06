@@ -3,8 +3,6 @@ import './ContentList.css';
 import Content from "../content/Content.js"
 
 class ContentList extends Component {
-// 0 4
-// 4 8
 
   partialRender() {
   	var count = Math.ceil(this.props.contents.length/4)

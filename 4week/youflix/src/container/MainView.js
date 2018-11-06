@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './MainView.css';
 import ConetntList from "../component/contentList/ContentList.js";
 import FullContent from '../component/fullcontent/FullContent.js';
+import axios from 'axios';
 
 class MainView extends Component {
 	constructor(props) {
@@ -65,7 +66,7 @@ class MainView extends Component {
 	    }
     ]
       this.state = {
-      	fullContent: {},
+      	fullContent: this.src[0],
 	  	contents : this.selectContents(this.src,7)
 	  };
 
@@ -134,7 +135,6 @@ class MainView extends Component {
   	}, 100000)
   }
 
-<<<<<<< HEAD
   handleContentChange = (content) => {
     this.setState({
       fullContent:content
@@ -146,13 +146,6 @@ class MainView extends Component {
       <div className="mainView">
       	<FullContent content={this.state.fullContent}/>
        	<ConetntList contents={this.state.contents} onClick={this.handleContentChange} />
-=======
-  render() {
-    return (
-      <div className="mainView">
-      	<FullContent content={this.src[0]}/>
-       	<ConetntList contents={this.state.contents} />
->>>>>>> 776c88c782b3f457c788913f40020437f2843ee0
       </div>
     );
   }

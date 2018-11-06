@@ -80,6 +80,11 @@ class Search extends Component {
   selectContents = (array, count) => {
     return array.slice(1,count)
   }
+
+  handleInput = (e) => {
+      console.log(e.target)
+  }
+
   render() {
     return (
       <div className="Search ">
@@ -87,7 +92,7 @@ class Search extends Component {
           <div className="form-group row align-items-center justify-content-center">
             <div className="col-md-3">
               <label>검색</label>
-              <input type="text" className="form-control" placeHolder="Seacrh..."/>
+              <input type="text" className="form-control search" onChange={this.handleInput} placeHolder="Seacrh..."/>
             </div>
           </div>
         </form>
