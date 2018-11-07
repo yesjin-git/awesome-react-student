@@ -22,7 +22,23 @@
   color: #61dafb;
 }
 
-.WritingMemo
+
+.Card {
+  width: 275px;
+  margin: 10px;
+}
+
+.NoteRow {
+  max-width: 1024px;
+}
+
+.Title {
+  font-size: 14px;
+}
+
+.Pos {
+  margin-bottom: 12px;
+}
 
 @keyframes App-logo-spin {
   from {
