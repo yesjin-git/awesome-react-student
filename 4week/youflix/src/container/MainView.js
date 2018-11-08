@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './MainView.css';
 import ConetntList from "../component/contentList/ContentList.js";
 import FullContent from '../component/fullcontent/FullContent.js';
-import axios from 'axios';
+
 
 class MainView extends Component {
 	constructor(props) {
