@@ -2,10 +2,6 @@ import React, { Component } from 'react';
 import "./ContentView.css";
 
 class ContentView extends Component {
-	constructor(props) {
-	  super(props);
-	}
-
   render() {
   	let iframeSrc = "https://www.youtube.com/embed/"+this.props.match.params.id
     return (

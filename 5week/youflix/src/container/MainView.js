@@ -3,7 +3,6 @@ import './MainView.css';
 import ConetntList from "../component/contentList/ContentList.js";
 import FullContent from '../component/fullcontent/FullContent.js';
 
-
 class MainView extends Component {
 	constructor(props) {
 	  super(props);
@@ -67,7 +66,7 @@ class MainView extends Component {
     ]
       this.state = {
       	fullContent: this.src[0],
-	  	contents : this.selectContents(this.src,7)
+	  	  contents : this.selectContents(this.src,7)
 	  };
 
 	}
