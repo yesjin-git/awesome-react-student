@@ -1,19 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
 // 함수형 컴포넌트 생성.
-const NoteCard = (props) {
-  return (
-    // gird 설명. s m l 로 나뉨
-    <div className="col s12 m4 l3">
-      <div className="card yellow lighten-4">
-        <div className="card-content black-text">
-          <span className="card-title">{props.title}</span>
-          <p>{this.props.content}</p>
-        </div>
-      </div>
-    </div>
-  )
-}
 
 class App extends Component {
   constructor(props) {
@@ -57,22 +44,13 @@ class App extends Component {
         title: '',
         content: ''
       })
-      event.preventDefault();
     }
+    event.preventDefault();
   }
-
-
 
   // 특정 조건에 따라 불러오는 것은 render에 넣으면 안됨, render는 state가 변환될 때 마다 무조건 불러와지는 것. 이므로 비효율이 발생한다.  
   render() {
     //  function과 => 사용하는 것을 자유자제로 할줄 알아야 한다. 
-    // map을 사용할 때는 key값이 있어야 한다. 
-    const cardList = this.state.savedNote.map(
-      (card, index) => (
-        <NoteCard key={index} title={card.title} content={card.content} />
-      )
-    )
-
     return (
       <div>
         {/* class => className , style ="max-width: 18rem;" => style={{ maxWidth: '18rem'}} */}
@@ -110,10 +88,20 @@ class App extends Component {
           </div>
         </div>
         {/* 노트들을 불러옵니다. */}
-        <div className="row Note">
+        <div className="row CardRow">
+          {/* map을 사용할 때는 key값이 있어야 한다. 두번 째 인자를 index라고 한다.   */}
           {this.state.savedNote.map(
             (card, index) => (
-              <NoteCard key={index} title={card.title} content={card.content} />
+              // gird 설명. s m l 로 나뉨
+              <div className="col s12 m4 l3">
+                <div className="card yellow lighten-4">
+                  <div className="card-content black-text">
+                    <span className="card-title">{card.title}</span>
+                    <p>{card.content}</p>
+                  </div>
+                </div>
+              </div>
+            ))
           }
         </div>
       </div>
