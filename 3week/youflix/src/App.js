@@ -5,26 +5,15 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import $ from 'jquery';
 import Popper from 'popper.js';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
-import Navbar from './component/navbar/Navbar.js';
-import MainView from './container/MainView.js';
-import Search from './container/Search.js';
-import ContentView from './component/contentView/ContentView.js';
-import { NavLink, Switch, Route } from 'react-router-dom'
-
-const Main =()=>(
-		<Switch>
-			<Route exact path="/" component={MainView}></Route>
-			<Route exact path="/search" component={Search}></Route>
-			<Route excat path="/view/:id" component={ContentView}></Route>
-		</Switch>
-	)
+import Navbar from './Navbar.js';
+import MainView from './MainView.js';
 
 class App extends Component {
-  render() { 
+  render() {
     return (
       <div className="App">
         <Navbar />
-        <Main />
+        <MainView />
       </div>
     );
   }
