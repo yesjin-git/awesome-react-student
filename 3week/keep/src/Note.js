@@ -47,8 +47,6 @@ class Note extends Component {
       </div >
     );
   }
-
-
 }
 
 export default Note;
