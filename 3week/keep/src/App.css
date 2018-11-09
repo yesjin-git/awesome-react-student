@@ -1,8 +1,30 @@
-.Card {
+/* 클래스는 .이 여러개 붙은게 가장 우선적으로 적용된다. 이럴 경우는 id를 통해 덮을 수 있다.  */
+#TitleInput {
+  padding-right: 0px;
+  padding-left: 0px;
+}
+/* 대소문자를 다르게 인식한다. */
+.SubmitBtn {
+  margin-top: 5%;
+}
+
+.NoteList {
+  max-width: 1024px;
+}
+
+.Note {
+  position: relative;
   width: 275px;
   margin: 10px;
 }
 
-.row .Note {
-  max-width: 1024px;
+.DeleteBtn {
+  position: absolute;
+  left: 80%;
+  top: -5%;
+}
+
+#Icon {
+  vertical-align: middle;
+  font-size: 2.0rem;
 }
