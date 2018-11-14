@@ -3,13 +3,10 @@ import './App.css';
 
 import WritingNote from './WritingNote.js'
 import NoteList from './NoteList.js'
-// 함수형 컴포넌트 생성.
 
 class App extends Component {
   constructor(props) {
-    //constructor를 직접 쓰려면, 반드시 super를 써야 한다. super에서 props를 인자로 갖으므로, constructor를 쓸때 props를 써줘야 한다. 
     super(props);
-    //state 초기값을 설정한다.
     this.state = {
       title: '',
       content: '',
@@ -51,7 +48,6 @@ class App extends Component {
     })
   }
 
-    // 특정 조건에 따라 불러오는 것은 render에 넣으면 안됨, render는 state가 변환될 때 마다 무조건 불러와지는 것. 이므로 비효율이 발생한다.  
     render() {
         //  function과 => 사용하는 것을 자유자제로 할줄 알아야 한다. 
         return(

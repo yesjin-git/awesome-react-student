@@ -51,7 +51,6 @@ class WritingNote extends Component {
                   id="autocomplete-input"
                   className="autocomplete"
                 />
-                {/*for => htmlFor 이라고 써야됨  */}
                 <label htmlFor="autocomplete-input">Take a note</label>
               </div>
             </div>
