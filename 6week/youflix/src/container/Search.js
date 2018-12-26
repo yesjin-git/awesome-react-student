@@ -50,10 +50,6 @@ class Search extends Component {
       return list
   }
 
-  componentWillUnmount() {
-    console.log("Sdfsdf")
-  }
-
   render() {
     return (
       <div className="Search ">

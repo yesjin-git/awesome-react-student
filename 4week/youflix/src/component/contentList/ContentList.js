@@ -32,7 +32,19 @@ class ContentList extends Component {
 
     return (
       <div className="contentList align-items-center justify-content-center">
-	      {this.partialRender()}
+      	{/*<div className=" row align-items-center justify-content-center">*/}
+	      { 
+	      // list & keys
+	      	// this.props.contents.map((c,index) => {
+	      	// 	return (
+	      	// 	  <div className="col-md-3" key={index}>
+			     //  	<Content src={this.props.contents[index].src} name={this.props.contents[index].name} id={this.props.contents[index].id}/>
+			     //  </div>
+	      	// 	)
+	      	// })
+	      	this.partialRender()
+	      }
+	      {/*</div>*/}
       </div>
     );
   }

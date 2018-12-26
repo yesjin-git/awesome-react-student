@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './MainView.css';
 import ConetntList from "../component/contentList/ContentList.js";
 import FullContent from '../component/fullcontent/FullContent.js';
-import axios from 'axios';
 
 class MainView extends Component {
 	constructor(props) {
@@ -67,7 +66,7 @@ class MainView extends Component {
     ]
       this.state = {
       	fullContent: this.src[0],
-	  	contents : this.selectContents(this.src,7)
+	  	  contents : this.selectContents(this.src,7)
 	  };
 
 	}
@@ -84,14 +83,49 @@ class MainView extends Component {
   	return array.slice(1,count)
   }
 
- setContents = (data) => {
-   let list = []
-    data.items.forEach((item, index) => {
-        list.push({id:item.id,name:item.snippet.title})
-    })
-    return list
-  }
+  // extractContents = (array) => {
+  // 	 let a = {
+  //     full:{
+  //       channelId:"sdfsdf",
+  //       title:"asd",
+  //       description:"fffff",
+  //     },
+  //     list:[
+  //       {
+  //         channelId:"sdfsdf",
+  //         title:"asd",
+  //         description:"fffff",
+  //       }, {
+  //         channelId:"sdfsdf",
+  //         title:"asd",
+  //         description:"fffff",
+  //       }, {
+  //         channelId:"sdfsdf",
+  //         title:"asd",
+  //         description:"fffff",
+  //       }, {
+  //         channelId:"sdfsdf",
+  //         title:"asd",
+  //         description:"fffff",
+  //       },
+  //     ]
+  //   }
+    
+  // 	let data = {full:{},list:[]}
+  // 	data.full['channelId'] = this.src[0].id
+  // 	data.full['title'] = this.src[0].name
+  // 	data.full['dscription'] = " "
 
+  // 	for(let i = 1;i<this.src.length;i++) {
+  // 		data.list.push({
+  // 			channelId: this.src[i].id,
+  // 			title: this.src[i].name,
+  // 			description: " "
+  // 		})
+  // 	}
+
+  // 	console.log(data)
+  // }
 
   componentDidMount() {
   	this.intervarId = setInterval(()=> {
@@ -104,24 +138,6 @@ class MainView extends Component {
     this.setState({
       fullContent:content
     })
-  }
-
-  fetchYoutube = () => {
-    axios.get('https://www.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&key=AIzaSyC-v1sIG2Wn3YnoD_7_bBS4zPDceDLKmLY&maxResults=21')
-    .then(({data}) => {
-      return this.setContents(data)
-    })
-    .then(list => {
-      console.log(list)
-      this.setState({
-        contents:list.slice(1,list.length),
-        fullContent:list[0]
-      })
-    })
-  }
-
-  componentDidMount() {
-    this.fetchYoutube()
   }
 
   render() {

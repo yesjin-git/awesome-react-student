@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import "./Content.css";
 
-
 const ContentView = (props) => {
       let url = "/view/"+props.id
       return (<NavLink to={url}>
@@ -42,8 +41,8 @@ class Content extends Component {
     let imgComponent = (<div><img className="thumbnail" src={imgSrc} />{this.state.isShow?(<div className="middle"><div className="text"> {this.props.content.name} </div></div>):""}</div>);
  
     return imgComponent
-
   }
+
 
   render() {
     return (
