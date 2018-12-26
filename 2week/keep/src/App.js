@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
+import 'materialize-css'
+import 'materialize-css/dist/css/materialize.min.css'
 // 함수형 컴포넌트 생성.
-
 class App extends Component {
   constructor(props) {
     //constructor를 직접 쓰려면, 반드시 super를 써야 한다. super에서 props를 인자로 갖으므로, constructor를 쓸때 props를 써줘야 한다. 
@@ -10,7 +11,7 @@ class App extends Component {
     this.state = {
       content: '이곳에 값을 입력해 주세요.',
       savedNote: [
-        { content: 'defalut' },
+        { content: 'default' },
         { content: 'default' }
       ]
     };
@@ -44,10 +45,11 @@ class App extends Component {
 
   // 이곳에 입력하세요 지우기. setState 실습
   componentDidMount() {
-    // callback 함수 setInterval로 예약 실행 시키기 setInterval
-    setInterval( () => this.setState({
+    // callback 함수개념 setInterval로 예약 실행 시키기 setInterval
+    setTimeout( () => this.setState({
       content: ""
     }), 4000)
+
   }
 
   // 특정 조건에 따라 불러오는 것은 render에 넣으면 안됨, render는 state가 변환될 때 마다 무조건 불러와지는 것. 이므로 비효율이 발생한다.  
@@ -60,7 +62,8 @@ class App extends Component {
         <div className="row" >
           {/* offset 개념. */}
           <div className="col s10 offset-s1 m6 offset-m3 l4 offset-l4">
-            {/* <div className="input-field">
+            {/* 과제로 작성해야 하는 파트
+            <div className="input-field">
               <input
                 type="text"
                 name="title"
@@ -80,6 +83,7 @@ class App extends Component {
                   onChange={this.handleChange}
                   id="autocomplete-input"
                   className="autocomplete"
+                  maxLength="20"
                 />
                 {/*for => htmlFor 이라고 써야됨  */}
                 <label htmlFor="autocomplete-input">Take a note</label>
@@ -111,4 +115,5 @@ class App extends Component {
   }
 }
 
-export default App;
+
+export default App

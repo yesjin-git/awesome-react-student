@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types'
 import './App.css';
 
 class Note extends Component {
@@ -26,11 +27,13 @@ class Note extends Component {
   }
 
   render() {
+    this.delete = this.props.delete
+
     return (
       <div className="Note col s12 m4 l3" onMouseEnter={this.toggleDeleteBtn} onMouseLeave={this.toggleDeleteBtn}>
         <div className="DeleteBtn">
         {/* 함수 보내기 설명!https://reactjs.org/docs/faq-functions.html */}
-          <div onClick={() => this.props.onDelete(this.props.note.id)} className={"DeleteBtn btn-floating btn-large scale-transition " + this.state.scale} >
+          <div onClick={() => this.delete(this.props.idx)} className={"DeleteBtn btn-floating btn-large scale-transition " + this.state.scale} >
             <i id="Icon" className="material-icons">delete</i>
           </div>
         </div>
@@ -47,6 +50,10 @@ class Note extends Component {
       </div >
     );
   }
+}
+
+Note.propTypes = {
+  delete: PropTypes.func.isRequired
 }
 
 export default Note;

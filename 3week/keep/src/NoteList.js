@@ -8,10 +8,12 @@ class NoteList extends Component {
     return (
       <div className='NoteList row'>
         {this.props.savedNote.map(
-          (note) => (
-            <Note note={note} onDelete={this.props.onDelete} key={note.id} />
-          ))
-        }
+          (note, index) => (
+            // key에 넘기는 값은 props로 접근안됨.
+            <Note note={note} delete={this.props.onDelete} key={index} idx={index} />
+            // {this.props.setId({index})} 이런식으로 넘기면서 state를 변경해줘야되나??
+          )
+        )}
       </div>
     );
   }

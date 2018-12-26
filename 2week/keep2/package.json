@@ -1,12 +1,12 @@
 {
-  "name": "keep",
+  "name": "keep2",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^3.7.0",
-    "materialize-css": "^1.0.0",
-    "react": "^16.6.1",
-    "react-dom": "^16.6.1",
+    "materialize-css": "^1.0.0-rc.2",
+    "react": "^16.6.3",
+    "react-dom": "^16.6.3",
     "react-scripts": "2.1.1"
   },
   "scripts": {
