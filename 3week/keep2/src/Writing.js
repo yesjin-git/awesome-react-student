@@ -11,7 +11,7 @@ class Writing extends Component {
 	}
 
 	handleSubmit = (e) => {
-		this.props.submit(this.state);
+		this.props.save(this.state)
 		this.setState({
 			userInputTitle: "",
 			userInputContent: ""
@@ -41,7 +41,7 @@ class Writing extends Component {
 					name='userInputTitle'
 					value={this.state.userInputTitle}
 					onChange={this.handleChange}
-					onClick={this.handleFocus}
+					onFocus={this.handleFocus}
 				/>
 			</div>
 		)
