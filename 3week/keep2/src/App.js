@@ -15,9 +15,9 @@ class App extends Component {
         //편의를 위해 content 라는 key값을 줘보겠습니다.
         // {} 안에는 key: value 형태로 값을 지정해 줄 수 있습니다.
         //
-        {id: 0, content: "default1"},
-        {id: 1, content: "default2"},
-        {id: 2, content: "default3"}
+        { title: "aa", content: "default1"},
+        { title: "aa", content: "default2"},
+        { title: "aa", content: "default3"}
       ]
     }
   }
@@ -27,8 +27,7 @@ class App extends Component {
     this.setState({
       savedNotes: [
         ...savedNotes, 
-        //content 안에 userInput을 넣어야, content로 저장이 됩니다.
-        {content: userInput}
+        {title: userInput.title, content: userInput.content}
       ]
     })
   }
@@ -39,7 +38,11 @@ class App extends Component {
         <Writing submit={this.handleSubmit} />
         <div className='row'>
           {this.state.savedNotes.map((note, index) => (
-            <Note content={note.content} key={index} />
+            <Note
+              title={note.title}
+              content={note.content}
+              key={index} 
+            />
           ))}
         </div>
       </div>
@@ -47,63 +50,6 @@ class App extends Component {
   }
 }
 
-class Writing extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      userInput: "test"
-    }
-  }
 
-  handleSubmit = (e) => {
-    console.log('submitted')
-    this.props.submit(this.state.userInput)
-    e.preventDefault();
-  }
-
-  handleChange = (event) => {
-    console.log('userInput is ' + this.state.userInput)
-    this.setState({
-      userInput: event.target.value
-    })
-  }
-
-  render() {
-    return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
-          <div className="input-field">
-            <input
-              type='text'
-              value={this.state.userInput}
-              onChange={this.handleChange}
-            />
-          </div>
-          <input
-            type='submit'
-            value='Submit'
-          />
-        </form>
-      </div>
-    )
-  }
-}
-
-class Note extends Component {
-  render() {
-    const content = this.props.content
-    return (
-      //아래 내용들은 materialize에 있는 라이브러리와 클래스를 활용한 것 입니다.
-      //materialize 의 grid부분을 참고해 주세요.
-      <div className='col s12 m6 l3'>
-        <div className='card yellow lighten-4'>
-          <div className='card-content black-text'>
-            {content}
-          </div>
-        </div>
-      </div>
-    )
-  }
-}
 
 export default App
