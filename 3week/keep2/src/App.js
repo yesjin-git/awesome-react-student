@@ -22,12 +22,13 @@ class App extends Component {
     }
   }
 
-  handleSubmit = (userInput) => {
+  handleSubmit = (writingState) => {
     const savedNotes = this.state.savedNotes
+    console.log(writingState)
     this.setState({
       savedNotes: [
         ...savedNotes, 
-        {title: userInput.title, content: userInput.content}
+        {title: writingState.userInputTitle, content: writingState.userInputContent}
       ]
     })
   }

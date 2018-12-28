@@ -11,11 +11,11 @@ class Writing extends Component {
 	}
 
 	handleSubmit = (e) => {
-		this.props.submit(this.state)
-		this.setState = {
+		this.props.submit(this.state);
+		this.setState({
 			userInputTitle: "",
 			userInputContent: ""
-		}
+		})
 		e.preventDefault();
 	}
 
@@ -38,8 +38,8 @@ class Writing extends Component {
 			<div className="input-field">
 				<input
 					type='text'
-					name='title'
-					value={this.state.userInput}
+					name='userInputTitle'
+					value={this.state.userInputTitle}
 					onChange={this.handleChange}
 					onClick={this.handleFocus}
 				/>
@@ -50,8 +50,8 @@ class Writing extends Component {
 			<div className="input-field">
 				<input
 					type='text'
-					name='content'
-					value={this.state.userInput}
+					name='userInputContent'
+					value={this.state.userInputContent}
 					onChange={this.handleChange}
 				/>
 			</div>
