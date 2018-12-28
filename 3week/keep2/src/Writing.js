@@ -1,57 +1,77 @@
-import React, {Component} from 'react'
+import React,{Component} from 'react'
 
 class Writing extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      userInputTitle: "test",
-      userInputContent: "test"
-    }
-  }
+	constructor(props) {
+		super(props)
+		this.state = {
+			userInputTitle: "test",
+			userInputContent: "test",
+			isWritingTitleClicked: false,
+		}
+	}
 
-  handleSubmit = (e) => {
+	handleSubmit = (e) => {
 		this.props.submit(this.state)
 		this.setState = {
-      userInputTitle: "",
-      userInputContent: ""
+			userInputTitle: "",
+			userInputContent: ""
 		}
-    e.preventDefault();
-  }
+		e.preventDefault();
+	}
 
-  handleChange = (event) => {
-    this.setState({
-      [event.target.name]: event.target.value
-    })
-  }
+	handleChange = (event) => {
+		this.setState({
+			[event.target.name]: event.target.value
+		})
+	}
 
-  render() {
-    return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
-          <div className="input-field">
-            <input
-							type='text'
-							name='title'
-              value={this.state.userInput}
-							onChange={this.handleChange}
-            />
-          </div>
-          <div className="input-field">
-            <input
-							type='text'
-							name='content'
-              value={this.state.userInput}
-              onChange={this.handleChange}
-            />
-          </div>
-          <input
-            type='submit'
-            value='Submit'
-          />
-        </form>
-      </div>
-    )
-  }
+	handleFocus = (e) => {
+		if(!this.state.isWritingTitleClicked) {
+			this.setState({
+				isWritingTitleClicked: true
+			})
+		}
+	}
+
+	render() {
+		const writingTitle = (
+			<div className="input-field">
+				<input
+					type='text'
+					name='title'
+					value={this.state.userInput}
+					onChange={this.handleChange}
+					onClick={this.handleFocus}
+				/>
+			</div>
+		)
+
+		const writingContent = (
+			<div className="input-field">
+				<input
+					type='text'
+					name='content'
+					value={this.state.userInput}
+					onChange={this.handleChange}
+				/>
+			</div>
+		)
+
+		const isWritingTitleClicked = this.state.isWritingTitleClicked;
+
+		return (
+			<div>
+				<form onSubmit={this.handleSubmit}>
+					{writingTitle}
+					{isWritingTitleClicked ? writingContent : ""}
+					<input
+						type='submit'
+						value='Submit'
+					/>
+				</form>
+			</div>
+		)
+	}
 }
 
 export default Writing
