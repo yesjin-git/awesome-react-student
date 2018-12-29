@@ -29,7 +29,7 @@ class Writing extends Component {
     if(note.title === '' && note.content === ''){
       alert('not submitted');
     } else{
-      this.props.submit(note)
+      this.props.save(note)
     }
     e.preventDefault();
   }

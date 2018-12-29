@@ -19,7 +19,7 @@ class App extends Component {
 
   // 입력하는 것도, 이밴트가 일어나게 만들어줘야 된다. 
   // id는 생성할 때 반드시 유일한 값으로 설정해줘야 한다. 공식문서에서는 npm shorid라는 걸 활용하라고 나오는데.. 너무 무거워지는 모양새이므로 생략..
-  handleSubmit = (note) => {
+  save = (note) => {
     let savedNote = this.state.savedNote
     this.setState({
       savedNote: [...savedNote, { id: this.state.savedNote.length, title: note.title, content: note.content }],
@@ -41,7 +41,7 @@ class App extends Component {
         return(
         <div>
       {/* 노트들을 작성합니다. */ }
-      <Writing change={this.handleChange} submit={this.handleSubmit} title={this.state.title} content={this.state.content} />
+      <Writing change={this.handleChange} save={this.save} title={this.state.title} content={this.state.content} />
       {/* 노트들을 불러옵니다. */ }
       <NoteList delete={this.handleDelete} savedNote={this.state.savedNote} />
         </div>

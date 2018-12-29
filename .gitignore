@@ -9,6 +9,6 @@
 /6week/youflix/node_modules
 
 #lecture
-/2week/keep2
-/3week/keep2
-/3week/keep3
+./2week/keep2/*
+./3week/keep2/*
+./3week/keep3/*
