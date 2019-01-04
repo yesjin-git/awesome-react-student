@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 //react를 사용하기 위해서 react 라이브러리에서 React와 Component를 호출함
 import logo from './logo.svg';
 import './App.css';
+//css를 불러옴 파일 이름은 달라도 된다.
 import Counter from './Counter.js'// 카운터를 표시해줄 컴포넌트 호출
 
 
@@ -19,7 +20,8 @@ class App extends Component {
     //number의 값을 state로 선언한다.
     //state는 상태를 저장하는 변수로 현재 컴포넌트에서 데이터를 관리하거나 ui부분의 상태를 관리할때 사용
     this.state = {
-      number: 0
+      number: 0,
+      double_number:0
     };
   }
 
@@ -43,9 +45,37 @@ class App extends Component {
     );
   }
   
+  handleReset = () => {
+    this.setState({
+      number:0
+    })
+  }
 
+  handleDoubleIncrease = () => {
+    this.setState({
+      double_number: this.state.double_number + 2
+    })
+  }
+
+
+  handleDoubleDecrease = () => {
+    this.setState({
+      double_number: this.state.double_number - 2
+    })
+  }
+
+   handleDoubleReset = () => {
+    this.setState({
+      double_number:0
+    })
+  }
+
+  //jsx를 화면에 보여줄때 render함수를 호출해서 return을 해야 한다.
+  //jsx는 js를 html처럼 사용할수 있게 해주는 언어?이다. 
   render() {
     return (
+      //jsx를 return 할때 두개 이상의 엘리먼트가 있으면
+      //항상 감싸주어야 한다. 아래에서는 div로 엘리먼트를 감싸줌.
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
@@ -55,7 +85,9 @@ class App extends Component {
           props는 상위컴포넌트에서 하위컴포넌트로 데이터와 함수를 전달할때 사용 하는 속성으로 
           props로 데이터를 받은 컴포넌트에서는 데이터 변경이 불가 하다.
         */}
-          <Counter handleIncrease={this.handleIncrease} handleDecrease={this.handleDecrease} number={this.state.number}/>
+          <Counter handleIncrease={this.handleIncrease} handleDecrease={this.handleDecrease} handleReset={this.handleReset} number={this.state.number}/>
+
+          <Counter handleIncrease={this.handleDoubleIncrease} handleDecrease={this.handleDoubleDecrease} handleReset={this.handleDoubleReset} number={this.state.double_number}/>
         </header>
       </div>
     );
