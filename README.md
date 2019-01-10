@@ -59,9 +59,7 @@ typora-copy-images-to: assets
 
     ```console
     //아주 주의해서 입력합시다.
-    
-    git checkout -b 1week
-    git branch -t remote/<해당주차> ex) git branch -t remote/1week
+    git checkout -t origin/<해당주차> ex) git checkout -t origin/1week
     ```
 
     참고 : https://cjh5414.github.io/get-git-remote-branch/
@@ -73,8 +71,7 @@ typora-copy-images-to: assets
      git commit -m "과제 1 xxx 구현"	(예시입니다.)
      
      ...(반복)...
-    /// 이곳을 꼭 주의합시다! 
-     git push --set-upstream origin 4week
+     git push
     ```
 
 6. 커밋한 후 해당 과제를 업로드한 뒤 주차에 해당하는 pull request를 보내 리뷰를 기다린다.
