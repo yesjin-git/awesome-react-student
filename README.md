@@ -1,6 +1,3 @@
---
-typora-copy-images-to: assets
----
 
 # Intro
 
@@ -64,7 +61,7 @@ typora-copy-images-to: assets
 
     참고 : https://cjh5414.github.io/get-git-remote-branch/
 
-5. 해당 주차의 폴더에서 수업이나 과제를 진행한두 commit / push로 자기 레포지토리를 업데이트 한다. 
+5. 해당 주차의 폴더에서 수업이나 과제를 진행한뒤 commit / push로 자기 레포지토리를 업데이트 한다. 
 
     ```console
      git add . 											(변화가 있는 모든 파일을 staging함)
