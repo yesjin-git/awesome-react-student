@@ -1,7 +1,7 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 */.vscode
-README.md
-/assets
+# README.md
+# /assets
 
 # dependencies
 /1week/counter/node_modules
