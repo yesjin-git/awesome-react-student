@@ -1,22 +1,24 @@
 import React, { Component } from 'react';
-//react를 사용하기 위해서 react 라이브러리에서 React와 Component를 호출함
 
-//Counter 컴포넌트를 생성 하고 Component를 상속
 class Counter extends Component {
-
-  //jsx를 화면에 그려주는 함수
-  render() {
-    return (
-      //두개 이상의 엘리먼트를 return 할때는 반드시 div로 감싸야 한다.
-      <div>
-        <h1>Counter</h1>
-        <div>값: {this.props.number}</div>
-        <button onClick={this.props.handleIncrease}>+</button>
-        <button onClick={this.props.handleDecrease}>-</button>
-        <button onClick={this.props.handleReset}>reset</button>
-      </div>
-    );
-  }
+    render(){
+        return(
+            <div>
+            <p>
+                {this.props.num}
+                <button onClick={this.props.add}>+</button>
+                <button onClick={this.props.sub}>-</button>
+                <button onClick={this.props.reset}>reset</button>
+            </p>
+            <p>
+                {this.props.num2}
+                <button onClick={this.props.doubleadd}>+</button>
+                <button onClick={this.props.doublesub}>-</button>
+                <button onClick={this.props.doublereset}>reset</button>
+            </p>
+            </div>
+        )
+    }
 }
 
 export default Counter;
