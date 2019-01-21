@@ -1,0 +1,56 @@
+#git 작업
+namki@LAPTOP-AIJ5O96J MINGW64 ~/Desktop/started_FrontEnd/awesome-react-study/2-week/ReactStudy (master)
+$ ls
+assets/  README.md
+
+namki@LAPTOP-AIJ5O96J MINGW64 ~/Desktop/started_FrontEnd/awesome-react-study/2-week/ReactStudy (master)
+$ git branch
+* master
+
+namki@LAPTOP-AIJ5O96J MINGW64 ~/Desktop/started_FrontEnd/awesome-react-study/2-week/ReactStudy (master)
+$ git branch -a
+* master
+  remotes/origin/1week
+  remotes/origin/2week
+  remotes/origin/3week
+  remotes/origin/4week
+  remotes/origin/5week
+  remotes/origin/HEAD -> origin/master
+  remotes/origin/master
+
+namki@LAPTOP-AIJ5O96J MINGW64 ~/Desktop/started_FrontEnd/awesome-react-study/2-week/ReactStudy (master)
+$ git checkout -t remotes/origin/2week
+Switched to a new branch '2week'
+Branch '2week' set up to track remote branch '2week' from 'origin'.
+
+namki@LAPTOP-AIJ5O96J MINGW64 ~/Desktop/started_FrontEnd/awesome-react-study/2-week/ReactStudy (2week)
+$ ls
+2week/
+
+#yarn다운
+npm install -g yarn
+
+#컴포넌트 생명주기
+-Mounting
+-Updating
+-UnUpdating
+:render되기 전과 후에 호출할 핸들러가 있다.
+
+#Form
+Form은 애초에 상태를 가지고 있다.
+사용자의 정보를 들고있다고, submit할때 서버에 보내준다.
+예를들면 컴포넌트라고 보면된다.
+
+#기획
+-컴포넌트3개(App)
+	-입력 컴포넌트 1개(props 쪽지내용)
+	-보여주는 컴포넌트 1개(props 쪽지내용)
+-입력 form 저장하는 state
+-보여주는 state
+-form요소내 입력값을 setState
+-state 쪽지 내용
+-state 보낼때 쪽지내용
+-state 받을때 쪽지내용
+
+
+
