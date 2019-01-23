@@ -14,12 +14,12 @@ class App extends Component {
     }
   }
 
-  save = (userInput) => {
+  save = (content) => {
     const savedNotes = this.state.savedNotes
     this.setState({
       savedNotes: [
         ...savedNotes, 
-        {content: userInput}
+        {content: content}
       ]
     })
   }
@@ -42,20 +42,20 @@ class Writing extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      userInput: "test"
+      content: "test"
     }
   }
 
   handleSubmit = (e) => {
     console.log('submitted')
-    this.props.save(this.state.userInput)
+    this.props.save(this.state.content)
     e.preventDefault();
   }
 
   handleChange = (event) => {
-    console.log('userInput is ' + this.state.userInput)
+    console.log('userInput is ' + this.state.content)
     this.setState({
-      userInput: event.target.value
+      content: event.target.value
     })
   }
 
@@ -66,7 +66,7 @@ class Writing extends Component {
           <div className="input-field">
             <input
               type='text'
-              value={this.state.userInput}
+              value={this.state.content}
               onChange={this.handleChange}
             />
           </div>
