@@ -27,11 +27,13 @@ class App extends Component {
         {teachar : "남기승",
         proj_title : "책 1권씩 읽어주기",
         proj_desc : "내 수업을 듣는 어린이집 아이들에게 문학적 사고를 키워주고자 시작한 프로젝트",
-        amount_coin : "50,000"}
+        funding_coin : "50,000",
+        max_coin : ""
+      }
       ]
     }
   }
-  save = (new_proj_data) =>{
+  Register_proj = (new_proj_data) =>{
     const proj_datas = this.state.proj
     this.setState({
       proj:[
@@ -48,11 +50,11 @@ class App extends Component {
         <hr/><State_platform /><hr/>         
         <Menu />
         {this.state.proj.map((proj_data, idx)=>{
-          return <ListProject teachar={proj_data.teachar} proj_title={proj_data.proj_title} proj_desc={proj_data.proj_desc} amount_coin={proj_data.amount_coin} key={idx}/>
+          return <ListProject teachar={proj_data.teachar} proj_title={proj_data.proj_title} proj_desc={proj_data.proj_desc} currnent_coin={proj_data.funding_coin} key={idx} max_coin={proj_data.max_coin}/>
         })}
         <body>
           <h1>프로젝트 등록하기</h1>
-          <Register />    
+          <Register register={this.Register_proj}/>    
         </body>
       </div>
     );
@@ -61,17 +63,50 @@ class App extends Component {
 class Register extends Component{
   /* 프로젝트를 등록하는 컴포넌트 클래스
       form을 통해 프로젝트 데이터를 받는다. */
+  constructor(props){
+    super(props)
+    this.state ={
+      user_proj :[
+        {
+          teachar : "",
+          proj_title : "",
+          proj_desc : "",
+          currnent_coin : "0",
+          max_coin:""
+        }
+      ]
+    }
+  }
+  HandleSave = (e) =>{
+    this.props.register(this.state.user_proj)
+    console.log(`HandleSave에서 값 : ${JSON.stringify(this.state.user_proj)}`)
+    e.preventDefault();
+  }
+  ChangeHandler = (e) =>{
+    //form데이터(강사,플젝,개요,코인량)를 다루자
+    this.setState({
+      user_proj: [
+        {
+        [e.target.name] : e.target.value,
+        [e.target.name] : e.target.value,
+        [e.target.name] : e.target.value,
+        [e.target.name] : e.target.value      
+        }
+      ]
+    })
+    console.log(`e.target.value 값 : ${e.target.value}`)
+  }
   render(){
     return(
-      <form>
+      <form onSubmit={this.HandleSave}>
         <label>강사 : </label>
-        <input type='text' value=' '/>
+        <input type='text' name={this.state.user_proj.teachar} value={this.state.user_proj.teachar} onChange={this.ChangeHandler}/>
         <label>프로젝트 : </label>
-        <input type='text' value=' '/>
+        <input type='text' name={this.state.user_proj.proj_title} value={this.state.user_proj.proj_title} onChange={this.ChangeHandler}/>
         <label>개요 : </label>
-        <input type='text' value=' '/>
+        <input type='text' name={this.state.user_proj.proj_desc} value={this.state.user_proj.proj_desc} onChange={this.ChangeHandler}/>
         <label>목표코인량 : </label>
-        <input type='text' value=' '/>
+        <input type='text' name={this.state.user_proj.max_coin} value={this.state.user_proj.max_coin} onChange={this.ChangeHandler}/>
         <input type='submit' value='submit'/>
       </form>
     );
@@ -100,7 +135,7 @@ class ListProject extends Component{
           </tr>
           <tr>
             <th>투자현황</th>
-            <td>0 / {this.props.amount_coin}coin</td>
+            <td>{this.props.currnent_coin} / {this.props.max_coin}coin</td>
           </tr>
         </tr>
       </table>
