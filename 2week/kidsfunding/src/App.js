@@ -87,10 +87,10 @@ class Register extends Component{
     this.setState({
       user_proj: [
         {
-        [e.target.name] : e.target.value,
-        [e.target.name] : e.target.value,
-        [e.target.name] : e.target.value,
-        [e.target.name] : e.target.value      
+        [e.target.teachar] : e.target.value,
+        [e.target.proj_title] : e.target.value,
+        [e.target.proj_desc] : e.target.value,
+        [e.target.max_coin] : e.target.value      
         }
       ]
     })
@@ -100,13 +100,13 @@ class Register extends Component{
     return(
       <form onSubmit={this.HandleSave}>
         <label>강사 : </label>
-        <input type='text' name={this.state.user_proj.teachar} value={this.state.user_proj.teachar} onChange={this.ChangeHandler}/>
+        <input type='text' name="teachar" value={this.state.user_proj.teachar} onChange={this.ChangeHandler}/>
         <label>프로젝트 : </label>
-        <input type='text' name={this.state.user_proj.proj_title} value={this.state.user_proj.proj_title} onChange={this.ChangeHandler}/>
+        <input type='text' name="proj_title" value={this.state.user_proj.proj_title} onChange={this.ChangeHandler}/>
         <label>개요 : </label>
-        <input type='text' name={this.state.user_proj.proj_desc} value={this.state.user_proj.proj_desc} onChange={this.ChangeHandler}/>
+        <input type='textarea' name="proj_desc" value={this.state.user_proj.proj_desc} onChange={this.ChangeHandler}/>
         <label>목표코인량 : </label>
-        <input type='text' name={this.state.user_proj.max_coin} value={this.state.user_proj.max_coin} onChange={this.ChangeHandler}/>
+        <input type='text' name="max_coin" value={this.state.user_proj.max_coin} onChange={this.ChangeHandler}/>
         <input type='submit' value='submit'/>
       </form>
     );
