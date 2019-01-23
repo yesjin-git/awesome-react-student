@@ -7,30 +7,30 @@ class App extends Component {
     super(props)
     this.state = {
       //state의 초기값을 설정합니다.
-      content: {notelist:["default1", "default2", "tmp text"]}
+      content: ["default1"]
     }
   }
   save = (note) => {
     //실제 save를 해주자.(설계한 함수의 상태를 확인하기 위해 save를 표시하도록 해봅시다.)
-    const content = this.state.content.notelist
+    const content = this.state.content
     this.setState({
       content: [
-        ...content.notelist, note
+        ...content, note
       ]
     })
   }
   render() {
     return (
       <div className='App'>
-        <button class="btn waves-effect waves-light" type="submit" name="action">Submit
-          <i class="material-icons right">send</i>
+        <button className="btn waves-effect waves-light" type="submit" name="action">Submit
+          <i className="material-icons right">send</i>
         </button>
         <Writing save={this.save} />
         {/* 원래 노트를 여러개 보내므로, Notes라고 하는게 좋겠지만 추후에 
         Note 컴포넌트로 활용할 예정이기 때문에 Note로 명명해 줍시다.*/}
         {/* 배열은 map사용가능(render안에 중괄호는 JS코드) */}
-        {this.state.content.notelist.map((note) => (
-          <Note content={note} />
+        {this.state.content.map((note, idx) => (
+          <Note content={note} key={idx}/>
         ))}
       </div>
     )
@@ -85,7 +85,8 @@ class Note extends Component {
 <과제>
 #######1 error solve
 Warning: Each child in an array or iterator should have a unique "key" prop.
-
+->배열이나 반복되는 각 자식들은 반드시 유니크한 키 prop를 가져야함
+(error 참고 :https://code.i-harness.com/ko-kr/q/1b045a6 )
 Check the render method of `App`. See https://fb.me/react-warning-keys for more information.
     in Note (at App.js:34)
     in App (at src/index.js:6)

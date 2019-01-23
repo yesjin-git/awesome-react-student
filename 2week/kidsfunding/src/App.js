@@ -23,19 +23,33 @@ class App extends Component {
   constructor(props){
     super(props)
     this.state ={
-      teachar : ["a"],
-      proj : ["b"],
-      proj_desc : ["c"],
-      amount_coin : ["d"]
+      proj :[
+        {teachar : "남기승",
+        proj_title : "책 1권씩 읽어주기",
+        proj_desc : "내 수업을 듣는 어린이집 아이들에게 문학적 사고를 키워주고자 시작한 프로젝트",
+        amount_coin : "50,000"}
+      ]
     }
   }
+  save = (new_proj_data) =>{
+    const proj_datas = this.state.proj
+    this.setState({
+      proj:[
+        ...proj_datas,
+        {new_proj_data}
+      ]
+    })
+  }
+  
   render() {
     return (
       <div className="App">
         <h1>KidsFunding Application</h1>
         <hr/><State_platform /><hr/>         
         <Menu />
-        <ListProject />
+        {this.state.proj.map((proj_data, idx)=>{
+          return <ListProject teachar={proj_data.teachar} proj_title={proj_data.proj_title} proj_desc={proj_data.proj_desc} amount_coin={proj_data.amount_coin} key={idx}/>
+        })}
         <body>
           <h1>프로젝트 등록하기</h1>
           <Register />    
@@ -65,25 +79,28 @@ class Register extends Component{
 }
 class ListProject extends Component{
   /* 리스트로 보이는 project 컴포넌트 */
+  constructor(props){
+    super(props)
+  }
   render(){
     return(
       <table border='1px'>
         <tr>
           <tr>
             <th>강사</th>
-            <td>남기승</td>
+            <td>{this.props.teachar}</td>
           </tr>
           <tr>
             <th>프로젝트</th>
-            <td>책 1권씩 읽어주기</td>
+            <td>{this.props.proj_title}</td>
           </tr>
           <tr>
             <th>설명</th>
-            <td>내 수업을 듣는 어린이집 아이들에게 문학적 사고를 키워주고자 시작한 프로젝트</td>
+            <td>{this.props.proj_desc}</td>
           </tr>
           <tr>
             <th>투자현황</th>
-            <td>0/50,000 coin</td>
+            <td>0 / {this.props.amount_coin}coin</td>
           </tr>
         </tr>
       </table>
