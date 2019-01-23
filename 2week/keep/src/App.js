@@ -5,13 +5,13 @@ class App extends Component {
     super(props)
     this.state = {
       //state의 초기값을 설정합니다.
-      savedNotes: ["default1", "default2"]
+      savedNotes: [{content: "default1"}, {content: "default2"}]
     }
   }
 
-  save = (note) => {
+  save = (content) => {
     //설계한 함수의 상태를 확인하기 위해 save를 표시하도록 해봅시다.
-    console.log(note + "is saved")
+    console.log(content + "is saved")
   }
 
   render() {
@@ -19,7 +19,7 @@ class App extends Component {
       <div className='App'>
         <Writing save={this.save} />
         {/* 원래 노트를 여러개 보내므로, Notes라고 하는게 좋겠지만 추후에 Note 컴포넌트로 활용할 예정이기 때문에 Note로 명명해 줍시다.*/}
-        <Note savedNotes={this.state.savedNotes} />
+        <Note content={this.state.savedNotes[0].content} />
       </div>
     )
   }
@@ -29,7 +29,7 @@ class Writing extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      userInput: ""
+      content: ""
     }
   }
 
@@ -37,16 +37,16 @@ class Writing extends Component {
     console.log("changed")
   }
 
-  handleSave = (e) => {
-    this.props.save("userInput")
+  handleSubmit = (e) => {
+    this.props.save("content")
   }
 
   render() {
     return (
-      <form onSubmit={this.handleSave}>
+      <form onSubmit={this.handleSubmit}>
         <input
           type='text'
-          value={this.state.userInput}
+          value={this.state.content}
           onChange={this.handleChange}
         />
         <input type='submit' />
@@ -57,12 +57,11 @@ class Writing extends Component {
 
 class Note extends Component {
   render() {
-    const savedNotes = this.props.savedNotes
+    const { content } = this.props
 
     return (
       <div>
-        {/* 각각의 list item 들을 " " 로 연결시킵니다. */}
-        {savedNotes.join(" ")}
+        {content}
       </div>
     )
   }
