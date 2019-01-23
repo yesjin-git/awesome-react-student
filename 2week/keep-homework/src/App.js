@@ -7,20 +7,27 @@ class App extends Component {
     super(props)
     this.state = {
       savedNotes: [
-        {content: "default1"},
-        {content: "default2"},
-        {content: "default3"}
+        {id:1,
+        title: "title1",
+        content: "default1"},
+        {id:2,
+        title: "title2",
+        content: "default2"},
+        {id:3,
+        title: "title3",
+        content: "default3"}
       ]
     }
   }
 
-  save = (userInput) => {
+  save = (userInputTitle, userInputContent) => {
     const savedNotes = this.state.savedNotes
     this.setState({
       savedNotes: [
         ...savedNotes, 
-        {content: userInput}
+        {title: userInputTitle, content: userInputContent}
       ]
+    
     })
   }
 
@@ -30,7 +37,9 @@ class App extends Component {
         <Writing save={this.save} />
         <div className='row'>
           {this.state.savedNotes.map((note) => (
-            <Note content={note.content} />
+            <Note content={note.content}
+                  title={note.title}
+                  key={note.id}/>
           ))}
         </div>
       </div>
@@ -42,20 +51,33 @@ class Writing extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      userInput: "test"
+      userInputTitle: "title",
+      userInputContent: "content"
+
     }
   }
 
   handleSubmit = (e) => {
     console.log('submitted')
-    this.props.save(this.state.userInput)
+    this.props.save(this.state.userInputTitle, this.state.userInputContent)
+    this.setState({
+      userInputTitle:'',
+      userInputContent:''
+    })
     e.preventDefault();
   }
 
-  handleChange = (event) => {
-    console.log('userInput is ' + this.state.userInput)
+  handleChangeTitle = (event) => {
+    console.log('userInputTitle is ' + this.state.userInputTitle)
     this.setState({
-      userInput: event.target.value
+      userInputTitle: event.target.value
+    })
+  }
+
+  handleChangeContent = (event) => {
+    console.log('userInputContent is' + this.state.userInputContent)
+    this.setState({
+      userInputContent: event.target.value
     })
   }
 
@@ -66,8 +88,13 @@ class Writing extends Component {
           <div className="input-field">
             <input
               type='text'
-              value={this.state.userInput}
-              onChange={this.handleChange}
+              value={this.state.userInputTitle}
+              onChange={this.handleChangeTitle}
+            />
+            <input
+              type='text'
+              value={this.state.userInputContent}
+              onChange={this.handleChangeContent}
             />
           </div>
           <input
@@ -83,12 +110,15 @@ class Writing extends Component {
 class Note extends Component {
   render() {
     const content = this.props.content
+    const title = this.props.title
     return (
       //아래 내용들은 materialize에 있는 라이브러리와 클래스를 활용한 것 입니다.
       //materialize 의 grid부분을 참고해 주세요.
       <div className='col s12 m6 l3'>
         <div className='card yellow lighten-4'>
           <div className='card-content black-text'>
+            {title}
+            <br></br>
             {content}
           </div>
         </div>
