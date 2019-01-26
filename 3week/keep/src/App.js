@@ -1,6 +1,4 @@
 import React,{Component} from "react"
-import "materialize-css"
-import "materialize-css/dist/css/materialize.min.css"
 
 class App extends Component {
   constructor(props) {
