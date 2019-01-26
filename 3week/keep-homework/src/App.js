@@ -1,39 +1,44 @@
-import React,{Component} from "react"
+import React, {Component} from "react"
 import "materialize-css"
 import "materialize-css/dist/css/materialize.min.css"
-import Note from "./Note"
+
 import Writing from "./Writing"
-import './note.css'
+import Note from "./Note"
 
 class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
       savedNotes: [
-        {id:0, title: "aa", content: "default1"},
-        {id:1, title: "aa", content: "default2"},
-        {id:2, title: "aa", content: "default3"}
+        {id: 0, title: "title1", content: "default1"},
+        {id: 1, title: "title2", content: "default2"},
+        {id: 2, title: "title3", content: "default3"}
       ]
     }
   }
 
   save = (writingState) => {
-    const savedNotes = this.state.savedNotes
-    const {userInputContent, userInputTitle} = writingState
-    let lastNoteId = savedNotes[savedNotes.length-1].id
+    const {savedNotes} = this.state
+    const lastNoteId = savedNotes[savedNotes.length - 1].id
+
     this.setState({
       savedNotes: [
-        ...savedNotes, 
-        {id: ++lastNoteId, title: userInputTitle, content: userInputContent}
+        ...savedNotes,
+        {
+          id: lastNoteId + 1,
+          title: writingState.title,
+          content: writingState.content
+        }
       ]
     })
   }
-  
-  delete = (id) => {
-    const { savedNotes } = this.state
-    const filteredNotes = savedNotes.filter((note) => id !== note.id )
+
+  delete = (index) => {
+    console.log(`${index} will be deleted`)
+    const {savedNotes} = this.state
+    savedNotes.splice(index, 1)
     this.setState({
-      savedNotes : filteredNotes
+      savedNotes: savedNotes
     })
   }
 
@@ -43,7 +48,13 @@ class App extends Component {
         <Writing save={this.save} />
         <div className='row'>
           {this.state.savedNotes.map((note, index) => (
-            <Note del={this.delete} title={note.title} content={note.content} id={note.id} key={index} />
+            <Note
+              delete={this.delete}
+              title={note.title}
+              content={note.content}
+              index={index}
+              key={note.id}
+            />
           ))}
         </div>
       </div>

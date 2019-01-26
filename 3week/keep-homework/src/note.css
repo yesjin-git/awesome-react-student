@@ -1,9 +1,9 @@
 .Note {
-	position: relative;
+  position: relative;
 }
 
 .DeleteBtn {
-	position: absolute;
+  position: absolute;
   left: 80%;
   top: -5%;
 }
