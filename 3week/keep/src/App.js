@@ -11,34 +11,34 @@ class App extends Component {
     this.state = {
       savedNotes: [
         { id: 0, title: "none", content: "default1" },
-        { id: 1, title: "none", content: "default2" }
+        { id: 1, title: "none", content: "default2" },
       ]
     }
   }
-  save = (userInput_title, userInput_content) => {
-    const savedNotes = this.state.savedNotes
+  save = (writingState) => {
+    const {savedNotes} = this.state
+    const lastNoteId = savedNotes[savedNotes.length - 1].id
     this.setState({
       savedNotes: [
         ...savedNotes,
-        { id: savedNotes.length, title: userInput_title, content: userInput_content }
-      ]
+        { id: lastNoteId+1, title: writingState.userInput_title, content: writingState.userInput_content }
+      ]//savedNotes.length값이 id에 넣어도 된다.
     })
   }
-  edit = (index, userInput_title, userInput_content) => {
+  edit = (_index_id, _title, _content) => {
     const savedNotes = this.state.savedNotes;
     savedNotes.map((note, index) => {
       // note에 id와 index가 같다면 그것을 지우자
       if (note.id === index) {     
         // if id가 index랑 같으면 노트의 title과 content를 바꿔라
-        this.title = this.userInput_title,
-        this.content = this.userInput_content
+        note.id = _index_id
+        note.title = _title
+        note.content = _content
       }
-      return note
       this.setState({
-        savedNotes: [{
-          title: userInput_title, content: userInput_content
-        }]
+        [savedNotes]: savedNotes
       })
+      return note
     })
   }
   delete = (id) => {

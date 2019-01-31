@@ -6,23 +6,37 @@ class Writing extends Component {
       this.state = {
         isWritingTitleClicked: false,  
         userInput_title: "",
-        userInput_content:""
+        userInput_content:"",
       }
     }
-  
+    //Submitted 건드는 핸들러 함수
     handleSubmit = (e) => {
-      console.log('submitted')
-      //this.props.save(this.state.userInput)
-      this.props.save(this.state.userInput_title, this.state.userInput_content)
-      this.setState({
-        isWritingTitleClicked: false,
-        userInput_title:"",
-        userInput_content:""
-      })
-      e.preventDefault();
+        const saveData = this.state
+        this.props.save(saveData)
+        this.setState({
+            isWritingTitleClicked: false,
+            userInput_title:"",
+            userInput_content:""
+        })
+        e.preventDefault();
     }
     handleFocus = (e) => {
-        if(!this.state.isWritingTitleClicked) {
+        console.log("called handleFocus");
+        // if(this.state.userInput_content != "") {
+        //     this.setState({
+        //         isWritingTitleClicked: true
+        //     })
+        // }else{
+
+        // }
+    }
+    handleBlur = (e) => {
+        console.log("called handleBlur");
+        if(!this.state.userInput_content){
+            this.setState({
+                isWritingTitleClicked: false
+            })
+        }else{
             this.setState({
                 isWritingTitleClicked: true
             })
@@ -35,32 +49,35 @@ class Writing extends Component {
       })
     }
 
-    handleOnClick = () =>{
-        this.setState({
-            isWritingTitleClicked : true
-        })
+    handleOnClick_InputTitle = () =>{
+        if(!this.state.isWritingTitleClicked){
+            this.setState({
+                isWritingTitleClicked: true
+            })
+        }
     }
     render() {   
         const writingTitle = (
             <div className="input-field">
-                <input
+                <input autoFocus
                     type='text'
                     name='userInput_title'
+                    id='userInput_title'
                     value={this.state.userInput_title}
                     onChange={this.handleChange}
-                    onClick={this.handleOnClick}
+                    onClick={this.handleOnClick_InputTitle}
                     onFocus={this.handleFocus}
-                    //onFocus
                 />
             </div>
         )
         const writingContent = (
             <div className="input-field">
-                <input
+                <input autoFocus
                     type='text'
                     name='userInput_content'
                     value={this.state.userInput_content}
                     onChange={this.handleChange}
+                    onBlur={this.handleBlur}
                 />
             </div>
         )
@@ -81,5 +98,4 @@ class Writing extends Component {
       )
     }
   }
-
   export default Writing

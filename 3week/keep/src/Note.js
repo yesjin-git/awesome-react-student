@@ -13,7 +13,6 @@ class Note extends Component {
     }
     handleDelete =(e) => {
         //const btn_del = this.props.del
-        //e.target.
         this.props.del(this.props.id)
         //console.log(`this.props.id : ${this.props.id}`);
     }
@@ -29,13 +28,20 @@ class Note extends Component {
         e.preventDefault();
     }
     handleSubmit = (e)=>{
-        this.props.edit(this.state.index_id, this.state.title, this.state.content)
+        const {index_id, title, content} = this.state
+        this.props.edit(index_id, title, content)
         this.setState({
             isEditClick_post: false,
             title:"",
-            content:""
+            content:"",
          })
         e.preventDefault();
+    }
+    handleBlur = (e) => {
+      this.setState({
+        isEditClick_post: false
+     })
+    e.preventDefault();
     }
     handleChange = (e) => {
         //console.log('userInput is ' + this.state.userInput)
@@ -43,7 +49,6 @@ class Note extends Component {
           [e.target.name]: e.target.value
         })
       }
-      
     render() {
         const {title, content} = this.props
         const post = (
@@ -57,12 +62,12 @@ class Note extends Component {
         </div>
         )
         const new_post = (
-            <form onSubmit={this.handleSubmit}>
-            <div className="card yellow lighten-4">
+            <div className="card yellow lighten-4" >
+            <form onSubmit={this.handleSubmit} onBlur={this.handleBlur}>
             <div className="card-content black-text">
               <span className="card-title">
                 
-                <input type='text' name='title' value={this.state.title} onChange={this.handleChange}/>
+                <input autoFocus type='text' name='title' value={this.state.title} onChange={this.handleChange}/>
               </span>
               <p><input type='text' name='content' value={this.state.content} onChange={this.handleChange}/></p>
               <input type='hidden' name='index_id' value={this.state.index_id}/>
@@ -70,8 +75,8 @@ class Note extends Component {
               type='submit'
               value='Submit'/>
             </div>
-        </div>
-        </form>
+            </form>
+        </div>        
         )
         return (
          //아래 내용들은 materialize에 있는 라이브러리와 클래스를 활용한 것 입니다.
