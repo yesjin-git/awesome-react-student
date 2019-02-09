@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import { BrowserRouter} from 'react-router-dom';//나는 라우터 사용할거라고 선언.
+import { BrowserRouter } from 'react-router-dom';//나는 라우터 사용할거라고 선언.
 
 ReactDOM.render(
 <BrowserRouter>
