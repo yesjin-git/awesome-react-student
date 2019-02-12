@@ -16,10 +16,8 @@
 	position: absolute; 
 	top: 35%;
 	left: 0;
-	z-index:10;
-}
-
-.text {
-	color:white;
+  z-index:10;
+  padding: 10px;
+  color:white;
 	font-size:16px;
 }

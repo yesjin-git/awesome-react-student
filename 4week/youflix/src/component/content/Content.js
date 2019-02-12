@@ -1,63 +1,44 @@
 import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
-import "./Content.css";
-import PropTypes from "prop-types";
-
-const ContentView = (props) => {
-      let url = "/view/"+props.id
-      return (<NavLink to={url}>
-                {props.children}
-              </NavLink>)
-    }
-
-const FullContentLink = (props) => {
-    return (<a onClick={props.onChangeFullContent}>
-              {props.children}
-            </a>)
-    }
+import { Link } from 'react-router-dom';
+import './Content.css';
 
 class Content extends Component {
-	constructor(props) {
-	  super(props);
+  state = {
+    isShow: false
+  }
 
-	  this.state = {
-	  	isShow: false
-	  };
-	}
+  onHover = () => {
+    this.setState({isShow: true});
+  }
 
-	onHover = () => {
-		this.setState({isShow:true})
-	}
-
-	onUnHover = () => {
-		this.setState({isShow:false})
-	}
+  onUnHover = () => {
+    this.setState({isShow: false});
+  }
 
   onChangeFullContent = () => {
-    this.props.onClick(this.props.content)
+    this.props.onClick(this.props.content);
   }
 
   displayImg = () => {
-    let imgSrc = "https://img.youtube.com/vi/"+this.props.content.id+"/0.jpg"
-    let imgComponent = (<div><img className="thumbnail" src={imgSrc} />{this.state.isShow?(<div className="middle"><div className="text"> {this.props.content.name} </div></div>):""}</div>);
- 
-    return imgComponent
+    const { content } = this.props;
+    const { isShow } = this.state;
+    const imgSrc = `https://img.youtube.com/vi/${content.id}/0.jpg`;
+    return (<div><img className="thumbnail" alt="동영상썸네일" src={imgSrc}/>{isShow && <div className="middle">{content.name}</div>}</div>)
   }
 
-
   render() {
+    const { content, onClick } = this.props;
+    const { onHover, onUnHover, onChangeFullContent } = this;
     return (
-      <div className="content" onMouseEnter={() => this.onHover()} onMouseLeave={() => this.onUnHover()}>
-      {this.props.onClick?
-        (<FullContentLink onChangeFullContent={this.onChangeFullContent}>{this.displayImg()}</FullContentLink>):
-        (<ContentView id={this.props.content.id}>{this.displayImg()}</ContentView>)}
+      <div className="content" onMouseEnter={onHover} onMouseLeave={onUnHover}>
+      {
+        onClick ? 
+          (<div onClick={onChangeFullContent}>{this.displayImg()}</div>) :
+          (<Link to={`/view/${content.id}`}>{this.displayImg()}</Link>)
+      }        
       </div>
     );
   }
-}
-Content.propTypes = {
-  onClick : PropTypes.func,
-  content: PropTypes.object
 }
 
 export default Content;
