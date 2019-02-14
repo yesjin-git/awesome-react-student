@@ -1,46 +1,105 @@
-import React, {Component} from "react"
-import "./note.css"
-// import PropTypes from "prop-types"
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 class Note extends Component {
-  handleClickDelete = () => {
-    this.props.delete(this.props.index)
-  }
+  state = {
+    id: this.props.id,
+    title: this.props.title,
+    content: this.props.content,
+    editMode: false
+  };
+
+  handleClickDelete = e => {
+    e.preventDefault();
+    this.props.delete(this.props.id);
+  };
+
+  handleClickEditMode = e => {
+    this.setState({
+      editMode: true
+    });
+  };
+
+  handleChange = e => {
+    const { name, value } = e.target;
+    this.setState({
+      [name]: value
+    });
+  };
+
+  handleSave = e => {
+    e.preventDefault();
+    this.props.save(this.state);
+
+    setTimeout(() => {
+      this.setState({
+        editMode: false
+      });
+    }, 200);
+  };
 
   render() {
-    const {title, content} = this.props
+    const { title, content } = this.props;
+    const { editMode } = this.state;
+    const {
+      handleClickDelete,
+      handleClickEditMode,
+      handleChange,
+      handleSave
+    } = this;
+
     return (
-      //아래 내용들은 materialize에 있는 라이브러리와 클래스를 활용한 것 입니다.
-      //materialize 의 grid부분을 참고해 주세요.
-      <div className='Note col s12 m4 l3'>
-        <div className='DeleteBtn'>
-          <div className='DeleteBtn btn-floating btn-large'>
-            <i onClick={this.handleClickDelete} id='Icon' className='material-icons'>
-              delete
+      <div className="Note col s12 m6 l4" onClick={handleClickEditMode}>
+        <div className="card light-green darken-3">
+          <h5 className="card-content white-text">
+            {!editMode && <span>{title}</span>}
+            <i
+              className="material-icons right waves-effect waves-yellow"
+              onClick={handleClickDelete}
+            >
+              close
             </i>
+            {editMode && (
+              <input
+                type="text"
+                name="title"
+                className="white-text"
+                defaultValue={title}
+                onChange={handleChange}
+              />
+            )}
+          </h5>
+          <div className="card-content white-text">
+            {!editMode && `${content}`}
+            {editMode && (
+              <input
+                type="text"
+                name="content"
+                className="white-text"
+                defaultValue={content}
+                onChange={handleChange}
+              />
+            )}
           </div>
-        </div>
-        <div className='card yellow lighten-4'>
-          <div className='card-content black-text'>
-            <span className='card-title'>{title}</span>
-            <p>{content}</p>
-          </div>
+
+          {editMode && (
+            <div className="card-action">
+              <button className="btn lime darken-3" onClick={handleSave}>
+                save
+              </button>
+            </div>
+          )}
         </div>
       </div>
-    )
+    );
   }
-}
-
-function inputIsRequired(props, propName, componentName) {
-  if (!props[propName]) {
-    return new Error(`${propName} is required`)
-  }
-  return null
 }
 
 Note.propTypes = {
-  title: inputIsRequired,
-  content: inputIsRequired
-}
+  id: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired,
+  content: PropTypes.string.isRequired,
+  delete: PropTypes.func.isRequired
+};
 
-export default Note
+export default Note;

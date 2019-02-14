@@ -1,93 +1,140 @@
-import React, {Component} from "react"
+import React, { Component } from "react";
 
 class Writing extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      title: "awesome",
-      content: "react",
-      isWritingTitleFocused: false
-    }
-  }
+  state = {
+    title: "",
+    content: "",
+    isWritingFocused: false
+  };
 
-  handleSubmit = (e) => {
-    this.props.save(this.state)
-    this.setState({
-      title: "",
-      content: ""
-    })
-    e.preventDefault()
-  }
+  onSubmit = e => {
+    e.preventDefault();
 
-  handleChange = (event) => {
-    //key 내부에 []를 쓰면, 내부 자바스크립트를 따라 실행됩니다.
-    //곧 이 경우 event.target.name에 접근하게 됩니다.
-    this.setState({
-      [event.target.name]: event.target.value
-    })
-  }
+    const { title, content } = this.state;
+    if (title !== "" && content !== "") {
+      this.props.add(this.state);
 
-  handleFocus = (e) => {
-    if (!this.state.isWritingTitleFocused) {
-      console.log('test')
       this.setState({
-        isWritingTitleFocused: true
-      })
+        title: "",
+        content: "",
+        isWritingFocused: false
+      });
     }
-  }
+  };
+
+  onChange = e => {
+    const { name, value } = e.target;
+    this.setState({
+      [name]: value
+    });
+  };
+
+  onFocus = e => {
+    this.setState({
+      isWritingFocused: true
+    });
+  };
+
+  onBlur = e => {
+    const name = e.relatedTarget && e.relatedTarget.name;
+    const { content, isWritingFocused } = this.state;
+
+    if (
+      name !== "title" &&
+      name !== "content" &&
+      name !== "submit" &&
+      content === "" &&
+      isWritingFocused
+    ) {
+      setTimeout(() => {
+        this.setState({
+          isWritingFocused: false
+        });
+      }, 500);
+    }
+  };
 
   render() {
+    const { title, content, isWritingFocused } = this.state;
+    const { onSubmit, onChange, onFocus, onBlur } = this;
+
     const writingTitleProps = {
-      title: this.state.title,
-      handleChange: this.handleChange,
-      handleFocus: this.handleFocus
-    }
+      title,
+      onChange,
+      onFocus,
+      onBlur
+    };
 
     const writingContentProps = {
-      content: this.state.content,
-      handleChange: this.handleChange
-    }
-
-    const {isWritingTitleFocused} = this.state
-    const {handleSubmit} = this
+      content,
+      onChange,
+      onFocus,
+      onBlur
+    };
 
     return (
-      <div>
-        <form onSubmit={handleSubmit}>
-          <WritingTitle {...writingTitleProps} />
-          {isWritingTitleFocused && <WritingContent {...writingContentProps} />}
-          <input type='submit' value='Submit' />
-        </form>
-      </div>
-    )
+      <form className="Writing" onSubmit={onSubmit}>
+        <div className="row">
+          <div className="col s12 input-field">
+            <WritingTitle {...writingTitleProps} className="validate col s10" />
+            <button
+              tabIndex="-1"
+              name="submit"
+              className="btn col s2 lime darken-3 white-text waves-effect waves-yellow"
+              type="submit"
+            >
+              <span className="hide-on-small-only">Submit</span>
+              <i className="material-icons right">send</i>
+            </button>
+          </div>
+        </div>
+
+        <div className="row">
+          <div className="col s12 input-field">
+            {isWritingFocused && (
+              <WritingContent {...writingContentProps} className="validate" />
+            )}
+          </div>
+        </div>
+      </form>
+    );
   }
 }
 
-function WritingTitle(props) {
+function WritingTitle({ title, onChange, onFocus, onBlur, className }) {
   return (
-    <div className='input-field'>
+    <>
       <input
-        type='text'
-        name='title'
-        value={props.title}
-        onChange={props.handleChange}
-        onFocus={props.handleFocus}
+        type="text"
+        name="title"
+        value={title}
+        onChange={onChange}
+        onFocus={onFocus}
+        onBlur={onBlur}
+        className={className}
+        id="writing__title"
       />
-    </div>
-  )
+      <label htmlFor="writing__title">Title</label>
+    </>
+  );
 }
 
-function WritingContent(props) {
+function WritingContent({ content, onChange, onFocus, onBlur, className }) {
   return (
-    <div className='input-field'>
+    <>
       <input
-        type='text'
-        name='content'
-        value={props.content}
-        onChange={props.handleChange}
+        type="text"
+        name="content"
+        value={content}
+        onChange={onChange}
+        onFocus={onFocus}
+        onBlur={onBlur}
+        className={className}
+        id="writing__content"
       />
-    </div>
-  )
+      <label htmlFor="writing_content">Take a note</label>
+    </>
+  );
 }
 
-export default Writing
+export default Writing;

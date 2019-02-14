@@ -1,63 +1,82 @@
-import React, {Component} from "react"
+import React, { Component } from "react";
+import SimpleStorage from "react-simple-storage";
 
-import Writing from "./Writing"
-import Note from "./Note"
+import Writing from "./Writing";
+import Note from "./Note";
+import "./App.scss";
 
 class App extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      savedNotes: [
-        {id: 0, title: "title1", content: "default1"},
-        {id: 1, title: "title2", content: "default2"},
-        {id: 2, title: "title3", content: "default3"}
-      ]
-    }
-  }
+  state = {
+    //savedNotes: [{ id: 1, title: "aaa", content: "111" }]
+    savedNotes: []
+  };
 
-  save = (writingState) => {
-    const {savedNotes} = this.state
-    const lastNoteId = savedNotes[savedNotes.length - 1].id
+  add = ({ title, content }) => {
+    const { savedNotes } = this.state;
+    const id =
+      savedNotes.length === 0 ? 0 : savedNotes[savedNotes.length - 1].id + 1;
+
+    this.setState({
+      savedNotes: [...savedNotes, { id: id, title: title, content: content }]
+    });
+  };
+
+  save = ({ id, title, content }) => {
+    const { savedNotes } = this.state;
+    const index = savedNotes.findIndex(note => note.id === id);
 
     this.setState({
       savedNotes: [
-        ...savedNotes,
+        ...savedNotes.slice(0, index),
         {
-          id: lastNoteId + 1,
-          title: writingState.title,
-          content: writingState.content
-        }
+          id,
+          title,
+          content
+        },
+        ...savedNotes.slice(index + 1, savedNotes.length)
       ]
-    })
-  }
+    });
+  };
 
-  delete = (index) => {
-    console.log(`${index} will be deleted`)
-    const {savedNotes} = this.state
-    savedNotes.splice(index, 1)
+  delete = id => {
+    const { savedNotes } = this.state;
+    const index = savedNotes.findIndex(note => note.id === id);
+
+    /*
+    const filteredValues = this.state.savedNotes.filter(x => x.id !== id);
     this.setState({
-      savedNotes: savedNotes
-    })
-  }
+      savedNotes: filteredValues
+    });
+    */
+
+    this.setState({
+      savedNotes: [
+        ...savedNotes.slice(0, index),
+        ...savedNotes.slice(index + 1, savedNotes.length)
+      ]
+    });
+  };
 
   render() {
     return (
-      <div>
-        <Writing save={this.save} />
-        <div className='row'>
-          {this.state.savedNotes.map((note, index) => (
+      <div className="App container">
+        <SimpleStorage parent={this} />
+        <Writing add={this.add} />
+        <div className="Notes row">
+          {this.state.savedNotes.map(note => (
             <Note
-              delete={this.delete}
+              key={note.id}
+              id={note.id}
               title={note.title}
               content={note.content}
-              index={index}
-              key={note.id}
+              delete={this.delete}
+              save={this.save}
             />
           ))}
         </div>
       </div>
-    )
+    );
   }
 }
 
-export default App
+export default App;
