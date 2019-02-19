@@ -17,7 +17,8 @@ class ContentView extends Component {
       		width="100%" height="100vw"
       		src={"https://www.youtube.com/embed/"+this.props.match.params.id}
       		allowFullScreen={true}
-      		allow="autoplay; encrypted-meida"
+          allow="autoplay; encrypted-meida"
+          title={this.props.match.params.id}
       		/>
       </div>
     );

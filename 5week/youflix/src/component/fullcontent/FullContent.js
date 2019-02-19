@@ -16,7 +16,8 @@ class FullContent extends Component {
       		frameBorder="0"
       		src={"https://www.youtube.com/embed/"+this.props.content.id+"?autoplay=1&rel=0"}
       		allowFullScreen={true}
-      		allow="autoplay"
+          allow="autoplay"
+          title={this.props.content.id}
       		/>
       </div>
     );
