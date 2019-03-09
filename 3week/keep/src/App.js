@@ -1,94 +1,63 @@
-import React,{Component} from "react"
+import React, {Component} from "react"
+import Writing from './Writing.js'
+import Note from './Note.js'
 
 class App extends Component {
+  // App component 데이터를 맞춰서 수정한다.
   constructor(props) {
     super(props)
     this.state = {
       savedNotes: [
-        {content: "default1"},
-        {content: "default2"},
-        {content: "default3"}
+        {id: 0, title: "title1", content: "default1"},
+        {id: 1, title: "title2", content: "default2"},
+        {id: 2, title: "title3", content: "default3"}
       ]
     }
   }
 
-  save = (userInput) => {
-    const savedNotes = this.state.savedNotes
+  save = (writingState) => {
+    const {savedNotes} = this.state
+    const lastNoteId = savedNotes[savedNotes.length - 1].id
+
     this.setState({
       savedNotes: [
         ...savedNotes, 
-        {content: userInput}
+        {
+          id: lastNoteId + 1,
+          title: writingState.title, 
+          content: writingState.content
+        }
       ]
     })
   }
 
+  delete = (index) => {
+    // template literal을 한번 더 활용한다.
+    console.log(`${index}note + will be deleted`)
+
+    const {savedNotes} = this.state
+    savedNotes.splice(index, 1)
+    
+    this.setState({
+      savedNotes: savedNotes
+    })
+  }
+
+  // Note Component에 props로 title을 내려준다.
+  // key에는 index를 지우고, Note들의 id 값을 넣어 준다.
   render() {
     return (
       <div>
         <Writing save={this.save} />
         <div className='row'>
-          {this.state.savedNotes.map((note) => (
-            <Note content={note.content} />
+          {this.state.savedNotes.map((note, index) => (
+            <Note 
+              delete={this.delete}
+              title={note.title}
+              content={note.content}
+              index={index}
+              key={note.id} />
           ))}
-        </div>
-      </div>
-    )
-  }
-}
-
-class Writing extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      userInput: "test"
-    }
-  }
-
-  handleSubmit = (e) => {
-    console.log('submitted')
-    this.props.save(this.state.userInput)
-    e.preventDefault();
-  }
-
-  handleChange = (event) => {
-    console.log('userInput is ' + this.state.userInput)
-    this.setState({
-      userInput: event.target.value
-    })
-  }
-
-  render() {
-    return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
-          <div className="input-field">
-            <input
-              type='text'
-              value={this.state.userInput}
-              onChange={this.handleChange}
-            />
-          </div>
-          <input
-            type='submit'
-            value='Submit'
-          />
-        </form>
-      </div>
-    )
-  }
-}
-
-class Note extends Component {
-  render() {
-    const content = this.props.content
-    return (
-      //아래 내용들은 materialize에 있는 라이브러리와 클래스를 활용한 것 입니다.
-      //materialize 의 grid부분을 참고해 주세요.
-      <div className='col s12 m6 l3'>
-        <div className='card yellow lighten-4'>
-          <div className='card-content black-text'>
-            {content}
-          </div>
         </div>
       </div>
     )
