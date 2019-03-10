@@ -1,50 +1,39 @@
 import React, { Component } from 'react';
 
-class Counter extends Component {
-    constructor(props) {
-        super(props);
+export default class Counter extends Component {
+  constructor (props) {
+    super(props);
 
-        this.state = {
-            number: 0
-        };
-    }
+    this.state = {
+      number: 0
+    };
+  }
 
-    handleIncrease = (increaseNum) => {
-        const { number } = this.state;
+  // props로 App에서 증감값을 넘겨주면 그에 따른 연산 처리 (handle)를 해준다.
+  handleChange = (value) => {
+    this.setState({
+        number: this.state.number + value
+    });
+  }
 
-        this.setState({
-            number : number + increaseNum
-        });
-    }
+  reset = () => {
+    this.setState({
+      number: 0
+    });
+  }
 
-    handleDecrease = (decreaseNum) => {
-        this.setState(
-            ({ number }) => ({
-                number: number - decreaseNum
-            })
-        );
-    }
-
-    reset = () => {
-        this.setState({
-            number: 0
-        });
-    }
-
-    render() {
-        return (
-            <div className="Counter">
-                <header className="Counter-header">
-                    값 : {this.state.number}
-                </header>
-                <p>
-                    <button variant="dark" onClick={() => this.handleIncrease(this.props.valueNum)}>+</button>&nbsp;
-                    <button onClick={() => this.handleDecrease(this.props.valueNum)}>-</button>&nbsp;
-                    <button onClick={() => this.reset()}>초기화</button>
-                </p>                
-            </div>
-        )
-    }
+  render() {
+    return (
+      <div className="Counter">
+        <header className="Counter-header">
+          값 : {this.state.number}
+        </header>
+        <p>
+          <button onClick={() => this.handleChange(this.props.valueNum)}>+</button>&nbsp;
+          <button onClick={() => this.handleChange(-this.props.valueNum)}>-</button>&nbsp;
+          <button onClick={() => this.reset()}>초기화</button>
+        </p>
+      </div>
+    )
+  }
 }
-
-export default Counter;
