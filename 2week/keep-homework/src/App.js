@@ -1,4 +1,4 @@
-import React,{Component} from "react"
+import React, {Component} from "react"
 import "materialize-css"
 import "materialize-css/dist/css/materialize.min.css"
 
@@ -14,8 +14,9 @@ class App extends Component {
     }
   }
 
-  save = (id, title, content) => {
+  save = (title, content) => {
     const savedNotes = this.state.savedNotes
+    // 삭제가 들어가면 아래와 같은 인덱스를 방식으로는 id를 넣어주면 안 된다.
     const lastNoteIndex = savedNotes[savedNotes.length - 1].id
 
     this.setState({
@@ -42,7 +43,8 @@ class App extends Component {
 
 class Writing extends Component {
   constructor(props) {
-    super(props)
+    super(props);
+
     this.state = {
       title: "Title",
       content: "Take a note"
@@ -50,9 +52,17 @@ class Writing extends Component {
   }
 
   handleSubmit = (e) => {
-    // console.log('submitted')
-    this.props.save(this.state.id, this.state.title, this.state.content)
+    // console.log('submitted');
+    const {title, content} = this.state;
+
+    // 페이지가 새로고침 되는 것을 막아준다.
     e.preventDefault();
+
+    // 값이 비어 있으면 함수를 종료한다.
+    if (!title || !content)
+      return;
+
+    this.props.save(title, content);
 
     this.setState({
       title: "",
@@ -72,21 +82,10 @@ class Writing extends Component {
       <div>
         <form onSubmit={this.handleSubmit}>
           <div className="input-field">
-            <input
-              type='text'
-              value={this.state.title}
-              onChange={this.handleChange}
-            />
-            <input
-              type='text'
-              value={this.state.content}
-              onChange={this.handleChange}
-            />
+            <input type='text' value={this.state.title} onChange={this.handleChange}/>
+            <input type='text' value={this.state.content} onChange={this.handleChange}/>
           </div>
-          <input
-            type='submit'
-            value='Submit'
-          />
+          <input type='submit' value='Submit'/>
         </form>
       </div>
     )
@@ -115,4 +114,4 @@ class Note extends Component {
   }
 }
 
-export default App
+export default App;
