@@ -1,8 +1,8 @@
 import React, {Component} from "react"
 
-class Writing extends Component {
+export default class Writing extends Component {
     constructor(props) {
-      super(props)
+      super(props);
 
       this.state = {
           title: "awesome",
@@ -16,14 +16,20 @@ class Writing extends Component {
     // 추가적으로 content를 초기화 하는 것도 추가한다.
     handleSubmit = (e) => {
       // console.log('submitted')
-      this.props.save(this.state)
+      const {title, content} = this.state;
+      e.preventDefault();
+
+      // 둘 중 하나라도 null 이면 입력되지 않게 처리한다.
+      if (!title || !content) {
+          return;
+      }
+
+      this.props.save(this.state);
 
       this.setState({
             title: "",
             content: ""
         })
-
-      e.preventDefault();
     }
   
     handleChange = (event) => {
@@ -56,7 +62,6 @@ class Writing extends Component {
         }
 
         const {isWritingTitleFocused} = this.state
-
         const {handleSubmit} = this
 
         return (
@@ -97,5 +102,3 @@ function WritingContent(props) {
         </div>
     )
 }
-
-export default Writing

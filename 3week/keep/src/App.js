@@ -2,7 +2,7 @@ import React, {Component} from "react"
 import Writing from './Writing.js'
 import Note from './Note.js'
 
-class App extends Component {
+export default class App extends Component {
   // App component 데이터를 맞춰서 수정한다.
   constructor(props) {
     super(props)
@@ -17,7 +17,7 @@ class App extends Component {
 
   save = (writingState) => {
     const {savedNotes} = this.state
-    const lastNoteId = savedNotes[savedNotes.length - 1].id
+    const lastNoteId = savedNotes.length ? savedNotes[savedNotes.length - 1].id : -1;
 
     this.setState({
       savedNotes: [
@@ -33,10 +33,10 @@ class App extends Component {
 
   delete = (index) => {
     // template literal을 한번 더 활용한다.
-    console.log(`${index}note + will be deleted`)
+    // console.log(`${index} note + will be deleted`)
 
     const {savedNotes} = this.state
-    savedNotes.splice(index, 1)
+    savedNotes.splice(index, 1);
     
     this.setState({
       savedNotes: savedNotes
@@ -51,17 +51,10 @@ class App extends Component {
         <Writing save={this.save} />
         <div className='row'>
           {this.state.savedNotes.map((note, index) => (
-            <Note 
-              delete={this.delete}
-              title={note.title}
-              content={note.content}
-              index={index}
-              key={note.id} />
+            <Note delete={this.delete} title={note.title} content={note.content} index={index} key={note.id} />
           ))}
         </div>
       </div>
     )
   }
 }
-
-export default App

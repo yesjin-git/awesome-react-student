@@ -1,7 +1,7 @@
 import React, {Component} from "react"
 import './Note.css'
 
-class Note extends Component {
+export default class Note extends Component {
     static propTypes = {
         title: inputIsRequired,
         content: inputIsRequired
@@ -38,10 +38,8 @@ class Note extends Component {
 
 function inputIsRequired(props, propName, componentName) {
     if (!props[propName]) {
-        return new Error(`$(propName) is required`)
+        return new Error(`$(propName) is required`);
     }
 
-    return null
+    return null;
 }
-
-export default Note
