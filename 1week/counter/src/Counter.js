@@ -1,22 +1,39 @@
 import React, { Component } from 'react';
-//react를 사용하기 위해서 react 라이브러리에서 React와 Component를 호출함
 
-//Counter 컴포넌트를 생성 하고 Component를 상속
-class Counter extends Component {
+export default class Counter extends Component {
+  constructor (props) {
+    super(props);
 
-  //jsx를 화면에 그려주는 함수
+    this.state = {
+      number: 0
+    };
+  }
+
+  // props로 App에서 증감값을 넘겨주면 그에 따른 연산 처리 (handle)를 해준다.
+  handleChange = (value) => {
+    this.setState({
+        number: this.state.number + value
+    });
+  }
+
+  reset = () => {
+    this.setState({
+      number: 0
+    });
+  }
+
   render() {
     return (
-      //두개 이상의 엘리먼트를 return 할때는 반드시 div로 감싸야 한다.
-      <div>
-        <h1>Counter</h1>
-        <div>값: {this.props.number}</div>
-        <button onClick={this.props.handleIncrease}>+</button>
-        <button onClick={this.props.handleDecrease}>-</button>
-        <button onClick={this.props.handleReset}>reset</button>
+      <div className="Counter">
+        <header className="Counter-header">
+          값 : {this.state.number}
+        </header>
+        <p>
+          <button onClick={() => this.handleChange(this.props.valueNum)}>+</button>&nbsp;
+          <button onClick={() => this.handleChange(-this.props.valueNum)}>-</button>&nbsp;
+          <button onClick={() => this.reset()}>초기화</button>
+        </p>
       </div>
-    );
+    )
   }
 }
-
-export default Counter;
