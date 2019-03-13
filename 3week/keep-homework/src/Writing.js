@@ -1,8 +1,9 @@
-import React, {Component} from "react"
+import React, {Component} from "react";
 
-class Writing extends Component {
+export default class Writing extends Component {
   constructor(props) {
-    super(props)
+    super(props);
+
     this.state = {
       title: "awesome",
       content: "react",
@@ -10,13 +11,20 @@ class Writing extends Component {
     }
   }
 
-  handleSubmit = (e) => {
-    this.props.save(this.state)
-    this.setState({
-      title: "",
-      content: ""
-    })
-    e.preventDefault()
+  handleSubmit = (e) => {    
+    const {title, content} = this.state;
+    e.preventDefault();
+
+    if (title && content) {
+      this.props.save(this.state);
+
+      this.setState({
+        title: "",
+        content: ""
+      })
+    }
+
+    this.handleBlur();
   }
 
   handleChange = (event) => {
@@ -27,29 +35,40 @@ class Writing extends Component {
     })
   }
 
-  handleFocus = (e) => {
-    if (!this.state.isWritingTitleFocused) {
-      console.log('test')
-      this.setState({
-        isWritingTitleFocused: true
-      })
+  handleFocus = () => {
+    const {isWritingTitleFocused} = this.state;
+
+    if (isWritingTitleFocused) {
+      return;
     }
+
+    this.setState({
+      isWritingTitleFocused: true
+    })
+  }
+
+  handleBlur = () => {
+    this.setState({
+      isWritingTitleFocused: false
+    })
   }
 
   render() {
+    const {isWritingTitleFocused, title, content} = this.state;
+    const {handleSubmit, handleChange, handleFocus, handleBlur} = this;
+
     const writingTitleProps = {
-      title: this.state.title,
-      handleChange: this.handleChange,
-      handleFocus: this.handleFocus
+      title: title,
+      handleChange: handleChange,
+      handleFocus: handleFocus
     }
 
     const writingContentProps = {
-      content: this.state.content,
-      handleChange: this.handleChange
+      content: content,
+      handleChange: handleChange,
+      handleFocus: handleFocus,
+      handleBlur: handleBlur
     }
-
-    const {isWritingTitleFocused} = this.state
-    const {handleSubmit} = this
 
     return (
       <div>
@@ -85,9 +104,9 @@ function WritingContent(props) {
         name='content'
         value={props.content}
         onChange={props.handleChange}
+        onFocus={props.handleFocus}
+        onBlur={props.handleBlur}
       />
     </div>
   )
 }
-
-export default Writing
