@@ -2,15 +2,7 @@
 */.vscode
 README.md
 /assets
-
-# dependencies
-/1week/counter/node_modules
-/2week/keep/node_modules
-/2week/keep-homework/node_modules
-/3week/keep/node_modules
-/4week/youflix/node_modules
-/5week/youflix/node_modules
-/6week/youflix/node_modules
+*/node_modules
 
 # /1week
 /2week
