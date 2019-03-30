@@ -1,9 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 //react를 사용하기 위해서 react 라이브러리에서 React와 Component를 호출함
 
 //Counter 컴포넌트를 생성 하고 Component를 상속
 class Counter extends Component {
-
   //jsx를 화면에 그려주는 함수
   render() {
     return (
@@ -13,7 +12,6 @@ class Counter extends Component {
         <div>값: {this.props.number}</div>
         <button onClick={this.props.handleIncrease}>+</button>
         <button onClick={this.props.handleDecrease}>-</button>
-        <button onClick={this.props.handleReset}>reset</button>
       </div>
     );
   }
