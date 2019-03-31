@@ -20,6 +20,9 @@ class App extends Component {
   timeStop = () => {
     clearInterval(this.intervalId);
   }
+  componentDidMount () {
+    this.timePlay();
+  }
  
   render() {
     return (
