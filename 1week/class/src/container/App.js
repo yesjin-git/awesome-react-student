@@ -18,25 +18,6 @@ class App extends Component {
     else if(event.target.textContent === "Local Time") this.setState({menu: 2});
     
   }
-  // componentDidMount() {
-  //   console.log("mounted");
-  //   this.intervalid = setInterval(this.handleIncrease, 1000);
-  // }
-
-  // componentDidUpdate() {
-  //   console.log("updated!");
-  // }
-
-  //0은 애초에 mount될 때 주어져있던 것이라서 nextState는 사실상 1부터 인식한다.
-  //하위 컴포넌트 중에서 업데이트할 필요 없는 게 있다면 이 메소드 활용하여 최적화 가능.
-  // shouldComponentUpdate(nextProps, nextState) {
-  //   if(nextState.number % 5 === 0) {
-  //     return false;
-  //   }
-
-  //   return true;
-  // }
-
 
 
   render() {
@@ -57,14 +38,14 @@ class App extends Component {
           
             <div className="counter1 tc fl w-50">
               <h2 className="f1 light-green">Counter1</h2>
-              <Counter id={1}/>   
+              <Counter interval={1}/>   
             </div>
 
             
 
             <div className="counter2 tc fl w-50">
               <h2 className="f1 light-green">Counter2</h2>
-              <Counter id={2}/>   
+              <Counter interval={2}/>   
             </div>
            
           </div>
