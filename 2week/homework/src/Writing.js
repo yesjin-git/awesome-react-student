@@ -6,6 +6,7 @@ class Writing extends Component {
     this.state = {
       title: "awesome",
       content: "react",
+      // view의 상태를 관리하는 state는 주로 isXXX형태로 명명해 명확하게 표현해줍니다.
       isWritingTitleFocused: false
     }
   }
@@ -19,11 +20,11 @@ class Writing extends Component {
     e.preventDefault()
   }
 
-  handleChange = (event) => {
+  handleChange = ({target}) => {
     //key 내부에 []를 쓰면, 내부 자바스크립트를 따라 실행됩니다.
     //곧 이 경우 event.target.name에 접근하게 됩니다.
     this.setState({
-      [event.target.name]: event.target.value
+      [target.name]: target.value
     })
   }
 
@@ -54,6 +55,7 @@ class Writing extends Component {
     return (
       <div>
         <form onSubmit={handleSubmit}>
+        {/* Props가 길어지는 경우 가시성을 위해 객체로 정의해, 아래와 같이 넘겨줄 수 있습니다.  */}
           <WritingTitle {...writingTitleProps} />
           {isWritingTitleFocused && <WritingContent {...writingContentProps} />}
           <input type='submit' value='Submit' />
@@ -62,7 +64,7 @@ class Writing extends Component {
     )
   }
 }
-
+//함수형 컴포넌트 예시 입니다. 함수형 컴포넌트에 대한 교육자료를 참고해 주세요. 
 function WritingTitle(props) {
   return (
     <div className='input-field'>

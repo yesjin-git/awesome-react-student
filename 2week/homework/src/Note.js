@@ -30,7 +30,8 @@ class Note extends Component {
     )
   }
 }
-
+//propTypes를 응용해, props가 존재하지 않을 경우 Error로그를 띄우는 예제 입니다.
+//교육자료의 propTypes 부분을 참고해 주세요.
 function inputIsRequired(props, propName, componentName) {
   if (!props[propName]) {
     return new Error(`${propName} is required`)
