@@ -18,7 +18,6 @@ class App extends Component {
   save = (writingState) => {
     const {savedNotes} = this.state
     const lastNoteId = savedNotes[savedNotes.length - 1].id
-
     this.setState({
       savedNotes: [
         ...savedNotes,
@@ -31,8 +30,20 @@ class App extends Component {
     })
   }
 
+  edit = (state) => {
+    const newSatate = [...this.state.savedNotes];
+    const thisNoteIndex = newSatate.findIndex((i) => i.id === state.id);
+    newSatate[thisNoteIndex] = {
+      id: state.id,
+      title: state.title,
+      content: state.content
+    };
+    this.setState({
+      savedNotes: newSatate
+    })
+  }
+
   delete = (index) => {
-    console.log(`${index} will be deleted`)
     const {savedNotes} = this.state
     savedNotes.splice(index, 1)
     this.setState({
@@ -52,6 +63,8 @@ class App extends Component {
               content={note.content}
               index={index}
               key={note.id}
+              note_id={note.id}
+              edit={this.edit}
             />
           ))}
         </div>

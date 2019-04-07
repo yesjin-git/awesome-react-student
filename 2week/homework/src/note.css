@@ -12,3 +12,27 @@
   vertical-align: middle;
   font-size: 2.0rem;
 }
+
+.view {
+  display: block;
+}
+.edit {
+  display: none;
+}
+
+.editing .view {
+  display: none;
+}
+.editing .edit {
+  display: block;
+}
+
+.card{
+  padding-bottom: 20px;
+}
+
+.Note input[type="submit"]{
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+}
