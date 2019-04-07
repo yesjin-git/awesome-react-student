@@ -4,32 +4,45 @@ class Writing extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      title: "awesome",
-      content: "react",
+      title: "",
+      content: "",
       isWritingTitleFocused: false
     }
   }
 
   handleSubmit = (e) => {
-    this.props.save(this.state)
-    this.setState({
-      title: "",
-      content: ""
-    })
     e.preventDefault()
+    if(!this.state.title){
+      return
+    }else{
+      this.props.save(this.state)
+      this.setState({
+        title: "",
+        content: ""
+      })
+    }
   }
 
   handleChange = (event) => {
-    //key 내부에 []를 쓰면, 내부 자바스크립트를 따라 실행됩니다.
-    //곧 이 경우 event.target.name에 접근하게 됩니다.
     this.setState({
       [event.target.name]: event.target.value
     })
   }
 
+  handleBlur = (event) => {
+    if(event.target.value){
+      this.setState({
+        isWritingTitleFocused: true
+      })
+    }else{
+      this.setState({
+        isWritingTitleFocused: false
+      })
+    }
+  }
+
   handleFocus = (e) => {
     if (!this.state.isWritingTitleFocused) {
-      console.log('test')
       this.setState({
         isWritingTitleFocused: true
       })
@@ -40,12 +53,14 @@ class Writing extends Component {
     const writingTitleProps = {
       title: this.state.title,
       handleChange: this.handleChange,
-      handleFocus: this.handleFocus
+      handleFocus: this.handleFocus,
+      handleBlur: this.handleBlur
     }
 
     const writingContentProps = {
       content: this.state.content,
-      handleChange: this.handleChange
+      handleChange: this.handleChange,
+      handleFocus: this.handleFocus
     }
 
     const {isWritingTitleFocused} = this.state
@@ -72,6 +87,7 @@ function WritingTitle(props) {
         value={props.title}
         onChange={props.handleChange}
         onFocus={props.handleFocus}
+        onBlur={props.handleBlur}
       />
     </div>
   )
