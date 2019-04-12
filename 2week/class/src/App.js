@@ -11,11 +11,10 @@ class App extends Component {
       //state의 초기값을 설정합니다.
       savedNotes: [{id: 0, title: "title1", content: "default1"}, {id: 1, title:"title2", content: "default2"}]
     }
+    
   }
 
   save = (writing) => {
-    //설계한 함수의 상태를 확인하기 위해 save를 표시하도록 해봅시다.
-    // console.log(this.state.savedNotes[0]);
 
     const {savedNotes} = this.state;
 

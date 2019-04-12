@@ -9,7 +9,7 @@ class Writing extends Component {
       this.state = {
         content: "",
         title:"",
-        isWritingTitleFocused: false
+        showContent: false
       }
     }
     
@@ -28,42 +28,66 @@ class Writing extends Component {
       
       this.setState({
         title: "",
-        content: ""
+        content: "",
+        showContent: false
       });
 
       e.preventDefault();
     }
     
     handleFocus = (e) => {
-      if(!this.state.isWritingTitleFocused) {
-        this.setState({
-          isWritingTitleFocused: true
-        });
-      } else if(!this.state.isWritingTitleFocused) {
-        this.setState({
-          isWritingTitleFocused: true
-        });
-      }
-      
+      const {showContent} = this.state;
 
+      if(!showContent) {
+        this.setState({
+          showContent: true
+        });
+      } 
     }
 
-    
+    //relatedTarget -> blur의 경우 눌리는 곳이 relatedTarget
+    // title에서 content 입력창으로 넘어올 때 blur event가 먼저 일어나서 정상적으로 동작하지 않게됨.
+    //이때 relatedTarget을 사용해서 해결. -> e.relatedTarget === null ? "" : e.relatedTarget.name
+    isWriting = (e) => {
+      const {content, title} = this.state;
+
+      //조건 1. content나 title에 입력이 있다.
+      //조건 2. 둘중에 하나라도 포커스가 있는 경우.
+      if(content!=="" || title!=="") return true;
+      else return false; 
+    }
+
+    handleBlur = (e) => {
+     
+      
+      //relatedTarget은 읽기 전용 엘리먼트에서만 존재하는 event의 프로퍼티이다. 그리고 onblur의 경우에는 사용자가 클릭한 부분이 relatedTarget이 된다. 그래서 현재 코드 상에서 content 입력란을 제외하고는 다른 곳을 클릭하면 relatedTarget은 null이다. 
+      if(!this.isWriting(e)){
+        const relatedTarget = e.relatedTarget === null ? "null" : e.relatedTarget.name;
+        
+        //그리고 content input태그에 onFocus이벤트도 있지만 onBlur가 먼저 동작하므로 title 입력란 클릭한 후 content 입력란을 클릭하게 될때, content 입력란이 사라지는 문제가 발생하여 아래와 같이 해결하였다.
+        if(relatedTarget !== "content") {
+          this.setState({showContent: false});
+        }
+      } 
+    }
+
     //input value는 초기값
     render() {
 
       const writingTitleProps = {
         title: this.state.title,
         handleChange: this.handleChange,
-        handleFocus: this.handleFocus
+        handleFocus: this.handleFocus,
+        handleBlur: this.handleBlur
       }
 
       const writingContentProps = {
         content: this.state.content,
-        handleChange: this.handleChange
+        handleChange: this.handleChange,
+        handleBlur: this.handleBlur
       }
 
-      const {isWritingTitleFocused} = this.state;
+      const {showContent} = this.state;
 
       const {handleSubmit} = this;
 
@@ -71,7 +95,8 @@ class Writing extends Component {
         <form onSubmit={handleSubmit}>
           <WritingTitle {...writingTitleProps} />
           <br></br>   
-          {isWritingTitleFocused && <WritingContent {...writingContentProps}/>}
+          {showContent && 
+            <WritingContent {...writingContentProps}/>}
           <br></br>
           
           <input type='submit'/>
@@ -98,6 +123,7 @@ class Writing extends Component {
           value={props.title}
           onChange={props.handleChange}
           onFocus={props.handleFocus}
+          onBlur={props.handleBlur}
           />
         </div>
       </div>
@@ -117,6 +143,8 @@ class Writing extends Component {
           autoComplete="off"
           value={props.content}
           onChange={props.handleChange}
+          onFocus={props.handleFocus}
+          onBlur={props.handleBlur}
           />            
         </div>
       </div>
