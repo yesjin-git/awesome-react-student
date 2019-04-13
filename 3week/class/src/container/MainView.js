@@ -67,7 +67,7 @@ class MainView extends Component {
    //  ]
       this.state = {
       	fullContent: {},// 메인화면에 가장 큰 영상 플레이어 콘텐츠를 가지는 state
-	  	contents : [] // 하단의 리스트에 들어갈 콘텐츠를 가지는 state
+	  	  contents : [] // 하단의 리스트에 들어갈 콘텐츠를 가지는 state
 	  };
 
 	}
