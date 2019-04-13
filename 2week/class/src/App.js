@@ -1,70 +1,77 @@
-import React, {Component} from "react"
+import React, {Component} from "react";
+import Note from './components/Note';
+import Writing from './components/Writing';
+import "materialize-css";
+import "materialize-css/dist/css/materialize.min.css"
 
 class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
       //state의 초기값을 설정합니다.
-      savedNotes: [{content: "default1"}, {content: "default2"}]
+      savedNotes: [{id: 0, title: "title1", content: "default1"}, {id: 1, title:"title2", content: "default2"}]
     }
+    
   }
 
-  save = (content) => {
-    //설계한 함수의 상태를 확인하기 위해 save를 표시하도록 해봅시다.
-    console.log(content + "is saved")
+  save = (writing) => {
+
+    const {savedNotes} = this.state;
+
+    
+    if(savedNotes.length > 0) {
+      const lastNoteId = savedNotes[savedNotes.length - 1].id;
+      this.setState({savedNotes: [ ...savedNotes, {id: lastNoteId+1, title: writing.title, content: writing.content}]});
+    } else {
+      this.setState({savedNotes: [ ...savedNotes, {id: 0, title: writing.title, content: writing.content}]});
+    }
+    
+    
   }
+
+  
+  delete = (id) => {
+    const {savedNotes} = this.state;
+    const filteredNotes = savedNotes.filter(note => note.id !== id);
+
+    this.setState({savedNotes: filteredNotes});
+  }
+
+  modify = (id, writing) => {
+    const {savedNotes} = this.state;
+    const modifiedNotes = savedNotes.map(note => {
+      if(note.id === id) {
+        note.title = writing.title;
+        note.content = writing.content;
+        return note;
+      } else return note;
+    })
+
+    this.setState({savedNotes: modifiedNotes});
+    
+  }
+
 
   render() {
+    const {savedNotes} = this.state;
+
     return (
       <div className='App'>
-        <Writing save={this.save} />
-        {/* 원래 노트를 여러개 보내므로, Notes라고 하는게 좋겠지만 추후에 Note 컴포넌트로 활용할 예정이기 때문에 Note로 명명해 줍시다.*/}
-        <Note content={this.state.savedNotes[0].content} />
+
+          <Writing save={this.save} />
+        
+       
+        <div className="row">
+          {savedNotes.map((note) => (
+            <Note key={note.id} content={note.content} title={note.title} delete={this.delete} id={note.id} modify={this.modify}/>
+          ))}
+        </div>
+        
+
       </div>
     )
   }
 }
 
-class Writing extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      content: ""
-    }
-  }
-
-  handleChange = (e) => {
-    console.log("changed")
-  }
-
-  handleSubmit = (e) => {
-    this.props.save("content")
-  }
-
-  render() {
-    return (
-      <form onSubmit={this.handleSubmit}>
-        <input
-          type='text'
-          value={this.state.content}
-          onChange={this.handleChange}
-        />
-        <input type='submit' />
-      </form>
-    )
-  }
-}
-
-class Note extends Component {
-  render() {
-    const { content } = this.props
-
-    return (
-      <div>
-        {content}
-      </div>
-    )
-  }
-}
 
 export default App
