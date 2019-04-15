@@ -8,6 +8,7 @@ import ContentView from './component/contentView/ContentView.js';
 import {Switch, Route } from 'react-router-dom'//router를 사용하기 위해서 react router dom 불러옵니다.
 import Board from './Board.js';
 import Search from './container/Search.js'
+import SearchResultMenu from './container/SearchResultMenu.js'
 
 //router를 감싸고 있는 함수형 컴포넌트
 const Main =()=>(//라우팅할때 url이 중복되는것을 막기 위해서 switch 사용
@@ -24,6 +25,7 @@ const Main =()=>(//라우팅할때 url이 중복되는것을 막기 위해서 sw
       */}
 			<Route  path="/view/:id" component={ContentView}></Route>
       <Route path="/search" component={Search} />
+      <Route path="/:id" component={SearchResultMenu} />
 		</Switch>
 	)
 
