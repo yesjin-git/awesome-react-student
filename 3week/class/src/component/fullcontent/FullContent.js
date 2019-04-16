@@ -14,9 +14,9 @@ class FullContent extends Component {
         <iframe
       		className="my-iframe"
       		frameBorder="0"
-      		src={"https://www.youtube.com/embed/"+this.props.content.id+"?autoplay=1&rel=0"}
-      		allowFullScreen={true}
-      		allow="autoplay"
+      		src={"https://www.youtube.com/embed/"+this.props.content.id+"?autoplay=0&rel=0"}
+          allowFullScreen={true}
+          allow="autoplay"
       		/>
       </div>
     );

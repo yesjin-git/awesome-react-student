@@ -1,7 +1,8 @@
 .content { 
 	position: relative;
 	z-index:111;
-	width:100%;
+  width:100%;
+  cursor: pointer;
 }
 
 .content:hover .thumbnail {
@@ -9,7 +10,8 @@
 }
 
 .thumbnail {
-	width:100%;
+  width:100%;
+  
 }
 
 .middle { 
@@ -21,5 +23,6 @@
 
 .text {
 	color:white;
-	font-size:16px;
+  font-size:16px;
+  font-weight: 600;
 }

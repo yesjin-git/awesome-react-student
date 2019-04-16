@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import "./Content.css";
 import PropTypes from "prop-types";
 
 const ContentView = (props) => {
       let url = "/view/"+props.id
-      return (<NavLink to={url}>
+      return (<Link to={url}>
                 {props.children}
-              </NavLink>)
+              </Link>)
     }
 
 const FullContentLink = (props) => {
@@ -35,11 +35,21 @@ class Content extends Component {
 
   onChangeFullContent = () => {
     this.props.onClick(this.props.content)
+    console.log(this.props.content)
   }
 
   displayImg = () => {
     let imgSrc = "https://img.youtube.com/vi/"+this.props.content.id+"/0.jpg"
-    let imgComponent = (<div><img className="thumbnail" src={imgSrc} />{this.state.isShow?(<div className="middle"><div className="text"> {this.props.content.name} </div></div>):""}</div>);
+    let imgComponent = (
+    <div>
+      <img alt="thumbnail img" className="thumbnail" src={imgSrc} />{this.state.isShow?
+        (<div className="middle">
+          <div className="text"> 
+            {this.props.content.name} 
+          </div>
+        </div>)
+        :""}
+    </div>);
  
     return imgComponent
   }
@@ -48,7 +58,8 @@ class Content extends Component {
   render() {
     return (
       <div className="content" onMouseEnter={() => this.onHover()} onMouseLeave={() => this.onUnHover()}>
-      {this.props.onClick?
+      {/* 홈 화면에서는  */}
+      {this.props.onClick ?
         (<FullContentLink onChangeFullContent={this.onChangeFullContent}>{this.displayImg()}</FullContentLink>):
         (<ContentView id={this.props.content.id}>{this.displayImg()}</ContentView>)}
       </div>

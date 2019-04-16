@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import Axios from 'axios';
-import ConetentList from "../component/contentList/ContentList";
-import Content from '../component/content/Content';
 import ContentList from '../component/contentList/ContentList';
+import './Search.css';
+import 'tachyons';
 
 export default class Search extends Component {
   constructor(props) {
@@ -50,14 +50,15 @@ export default class Search extends Component {
 
   render() {
     return (
-      <div>
-        <div>
+      <div className="mt-3">
+        <div className="center">
           <form onSubmit={this.handleSubmit}>
-            <label> 검색 : </label>
             <input 
               type="text" 
               value={this.state.keyword}
               onChange={this.handleInputChange} 
+              placeholder="Search"
+              className="search_input"
             />
           </form>
           <ContentList contents={this.state.contents} />
