@@ -28,7 +28,7 @@ class Navbar extends Component {
 		        <Link className="nav-link" to="/search">Search</Link>
 		      </li>
 					<li className="nav-item active">
-		        <Link className="nav-link" to="/game">Game</Link>
+						<Link className="nav-link" to="/game">Game</Link>
 		      </li>
 		    </ul>
 		  </div>
