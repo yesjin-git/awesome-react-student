@@ -6,7 +6,7 @@ import './Navbar.css';
 class Navbar extends Component {
   render() {
     return (
-      <div className="App">
+      
        <nav className="navbar navbar-expand-lg navbar-dark bg-dark-trans ">
         <a className="navbar-brand logo" href="/">YOUFLIX</a>
         
@@ -31,7 +31,7 @@ class Navbar extends Component {
             </ul>
           </div>
         </nav>
-      </div>
+      
     );
   }
 }
