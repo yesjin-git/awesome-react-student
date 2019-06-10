@@ -2,10 +2,11 @@ import React from 'react'
 
 class Clock extends React.Component {
     state = {
-        now: new Date()
+        now: new Date(),
+        startButtonDisable: false
     }
     componentDidMount() {
-        this.intervalId = setInterval(this.handleInc, 1000);
+        this.clockStart();
     }
     handleInc = () => {
         this.setState({ now: new Date() });
@@ -13,12 +14,23 @@ class Clock extends React.Component {
     componentDidUpdate() {
         console.log(this.state.now);
     }
-    // shouldComponentUpdate() {
-    //     return false;
-    // }
+    clockStop = () => {
+        clearInterval(this.intervalId);
+        this.startButtonDisable = false;
+    }
+    clockStart = () => {
+        if(!this.startButtonDisable){
+            this.intervalId = setInterval(this.handleInc, 1000);
+        }
+        this.startButtonDisable = true;
+    }
     render() {
         return (
-            <div>{this.state.now.toLocaleTimeString()}</div>
+            <div>
+                <p>{this.state.now.toLocaleTimeString()}</p>
+                <button onClick={this.clockStop}>stop</button>
+                <button onClick={this.clockStart}>start</button>
+            </div>
         );
     }
 }

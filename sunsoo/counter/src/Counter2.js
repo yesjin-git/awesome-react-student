@@ -1,14 +1,14 @@
 import React from 'react';
 
-class Counter extends React.Component {
+class Counter2 extends React.Component {
   state = {
     num: 0
   };
   add = () => {
-    this.setState({num:this.state.num + 1});
+    this.setState({num:this.state.num + 2});
   }
   sub = () => {
-    this.setState({num:this.state.num - 1});
+    this.setState({num:this.state.num - 2});
   }
   reset = () => {
     this.setState({num:0});
@@ -26,4 +26,4 @@ class Counter extends React.Component {
   }
 }
 
-export default Counter;
+export default Counter2;

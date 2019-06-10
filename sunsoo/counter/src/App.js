@@ -1,17 +1,20 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Counter from './Counter';
+import Counter2 from './Counter2';
 import Clock from './Clock';
 
 class App extends React.Component {
   render() {
-    const text = '안녕';
+    const text = 'Counter';
     return (
       <div className="App">
         <header className="App-header">
-          <p>{text}</p>
-          <Counter number={2} />
+          <h1>{text} 1</h1>
+          <Counter number={0} />
+          <h1>{text} 2</h1>
+          <Counter2 number={0} />
+          <h1>Clock</h1>
           <Clock />
         </header>
       </div>
