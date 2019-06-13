@@ -5,19 +5,25 @@ class Counter extends React.Component {
     num: 0
   };
   add = () => {
-    this.setState({num:this.state.num + 1});
+    const {num} = this.state;
+    const { interval} = this.props;
+
+    this.setState({num:num + interval});
   }
   sub = () => {
-    this.setState({num:this.state.num - 1});
+    this.setState({num:this.state.num - this.props.interval});
   }
   reset = () => {
     this.setState({num:0});
   }
   render() {
+    const { num } = this.state;
+    const { number } = this.props;
+
     return (
       <div>
-        <p>{this.props.number}</p>
-        <p>{this.state.num}</p>
+        <p>{number}</p>
+        <p>{num}</p>
         <button onClick={this.add}>+</button>
         <button onClick={this.sub}>-</button>
         <button onClick={this.reset}>reset</button>

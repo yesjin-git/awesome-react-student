@@ -11,9 +11,9 @@ class App extends React.Component {
       <div className="App">
         <header className="App-header">
           <h1>{text} 1</h1>
-          <Counter number={0} />
+          <Counter number={0} interval={1}/>
           <h1>{text} 2</h1>
-          <Counter2 number={0} />
+          <Counter number={0} interval={2}/>
           <h1>Clock</h1>
           <Clock />
         </header>

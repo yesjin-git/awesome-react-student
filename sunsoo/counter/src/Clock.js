@@ -16,7 +16,10 @@ class Clock extends React.Component {
     }
     clockStop = () => {
         clearInterval(this.intervalId);
+
         this.startButtonDisable = false;
+        this.setState({startButtonDisable:false})
+
     }
     clockStart = () => {
         if(!this.startButtonDisable){
