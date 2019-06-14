@@ -16,7 +16,7 @@ class Counter extends React.Component {
     const { num } = this.state;
     const { interval } = this.props;
 
-    this.setState({num:num + interval});
+    this.setState({num:num - interval});
   }
   reset = () => {
     this.setState({num:0});
