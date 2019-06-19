@@ -31,6 +31,17 @@ class App extends Component {
     })
   }
 
+  edit = (editingState) => {
+    let {savedNotes} = this.state
+
+    savedNotes.forEach(note => {
+      if(note.id == editingState.id) {
+        note.title = editingState.title
+        note.content = editingState.content
+      }
+    })
+  }
+
   delete = (index) => {
     console.log(`${index} will be deleted`)
     const {savedNotes} = this.state
@@ -48,6 +59,8 @@ class App extends Component {
           {this.state.savedNotes.map((note, index) => (
             <Note
               delete={this.delete}
+              edit={this.edit}
+              id={note.id}
               title={note.title}
               content={note.content}
               index={index}
