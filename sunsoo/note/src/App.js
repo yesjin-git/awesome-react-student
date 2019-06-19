@@ -84,20 +84,17 @@ class Writing extends Component {
     const showTitle = this.state.isClicked
     return (
       <form onSubmit={this.handleSubmit}>
-        {showTitle && (
-          <input
-            type='text'
-            name="title"
-            onChange={this.handleChange}
-          />
-        )
-        // do not show
-        }
+        <input
+          type='text'
+          name="title"
+          onChange={this.handleChange}
+          placeholder="제목"
+        />
         <input
           type='text'
           name="content"
-          onClick={this.handleClick}
           onChange={this.handleChange}
+          placeholder="내용"
         />
         <input type='submit' />
       </form>
