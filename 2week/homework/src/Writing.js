@@ -4,10 +4,11 @@ class Writing extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      title: "awesome",
-      content: "react",
-      // view의 상태를 관리하는 state는 주로 isXXX형태로 명명해 명확하게 표현해줍니다.
-      isWritingTitleFocused: false
+      title: "",
+      content: "",
+      titleFocused: false,
+      contentFocused: false,
+      isShowContent: false,
     }
   }
 
@@ -29,42 +30,56 @@ class Writing extends Component {
   }
 
   handleFocus = (e) => {
-    if (!this.state.isWritingTitleFocused) {
-      console.log('test')
-      this.setState({
-        isWritingTitleFocused: true
-      })
+    this.setState({
+      isShowContent: true,
+      [e.target.name + "Focused"]: true,
+    })
+  }
+
+  handleBlur = (e) => {
+    this.setState({
+      [e.target.name + "Focused"]: false,
+    })
+
+    if(e.relatedTarget==null || e.relatedTarget.name!='content') {
+      if(this.state.title == "" && this.state.content=="") {
+        this.setState({
+          isShowContent: false
+        })
+      }
     }
   }
 
   render() {
+    const {isShowContent} = this.state
+
     const writingTitleProps = {
       title: this.state.title,
       handleChange: this.handleChange,
-      handleFocus: this.handleFocus
+      handleFocus: this.handleFocus,
+      handleBlur: this.handleBlur,
     }
 
     const writingContentProps = {
       content: this.state.content,
-      handleChange: this.handleChange
+      handleChange: this.handleChange,
+      handleFocus: this.handleFocus,
+      handleBlur: this.handleBlur,
     }
-
-    const {isWritingTitleFocused} = this.state
-    const {handleSubmit} = this
 
     return (
       <div>
-        <form onSubmit={handleSubmit}>
-        {/* Props가 길어지는 경우 가시성을 위해 객체로 정의해, 아래와 같이 넘겨줄 수 있습니다.  */}
+        <form onSubmit={this.handleSubmit}>
           <WritingTitle {...writingTitleProps} />
-          {isWritingTitleFocused && <WritingContent {...writingContentProps} />}
+          {isShowContent && <WritingContent {...writingContentProps} />}
           <input type='submit' value='Submit' />
         </form>
       </div>
     )
   }
 }
-//함수형 컴포넌트 예시 입니다. 함수형 컴포넌트에 대한 교육자료를 참고해 주세요. 
+
+
 function WritingTitle(props) {
   return (
     <div className='input-field'>
@@ -74,7 +89,9 @@ function WritingTitle(props) {
         value={props.title}
         onChange={props.handleChange}
         onFocus={props.handleFocus}
-      />
+        onBlur={props.handleBlur}
+        onClick={props.handleClick}
+    />
     </div>
   )
 }
@@ -87,6 +104,9 @@ function WritingContent(props) {
         name='content'
         value={props.content}
         onChange={props.handleChange}
+        onFocus={props.handleFocus}
+        onBlur={props.handleBlur}
+        onClick={props.handleClick}
       />
     </div>
   )
