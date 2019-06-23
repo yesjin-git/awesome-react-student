@@ -6,7 +6,7 @@ class App extends Component {
     super(props)
     this.state = {
       //state의 초기값을 설정합니다.
-      savedNotes: [{id:0,title: "default1-t", content: "default1-c"}]
+      savedNotes: [{id:0, title: "default1-t", content: "default1-c", updateForm: "none"}]
     }
   }
 
@@ -19,6 +19,16 @@ class App extends Component {
     })
   }
 
+  update = (id) => {
+    console.log(id+' update')
+    this.state.savedNotes[id].updateForm = "block"
+    console.log(this.state.savedNotes[id])
+    // const {updateForm} = this.state.savedNotes[id]
+    // this.setState({
+    //   updateForm: "block"
+    // })
+  }
+
   save = (writingState) => {
     //설계한 함수의 상태를 확인하기 위해 save를 표시하도록 해봅시다.
     const savedNotes = this.state.savedNotes
@@ -26,7 +36,7 @@ class App extends Component {
     const lastId = savedNote.id
     this.setState({
       savedNotes: [...savedNotes,
-        {id:lastId+1,title: writingState.title,content: writingState.content}
+        {id:lastId+1,title: writingState.title,content: writingState.content, updateForm: "none"}
       ]
     })
     // console.log(savedNotes)
@@ -40,7 +50,7 @@ class App extends Component {
         <Writing save={this.save} />
         {/* 원래 노트를 여러개 보내므로, Notes라고 하는게 좋겠지만 추후에 Note 컴포넌트로 활용할 예정이기 때문에 Note로 명명해 줍시다.*/}
         { savedNotes.map(
-          note => <Note del={this.del} title={note.title} content={note.content} id={note.id} key={note.id} />
+          note => <Note del={this.del} update={this.update} title={note.title} content={note.content} id={note.id} key={note.id} updateForm={note.updateForm} />
           )
         }
       </div>
@@ -80,8 +90,13 @@ class Writing extends Component {
     event.preventDefault();
   }
 
+  handleUpdateSubmit = (event) => {
+    console.log("handleUpdateSubmit")
+    event.preventDefault();
+  }
+
   render() {
-    const showTitle = this.state.isClicked
+    // const showTitle = this.state.isClicked
     return (
       <form onSubmit={this.handleSubmit}>
         <input
@@ -106,13 +121,16 @@ class Note extends Component {
   handleDelete = e => {
     this.props.del(this.props.id)
   }
+  handleUpdate = e => {
+    this.props.update(this.props.id)
+  }
 
   render() {
-    const {id, title, content} = this.props
+    const {id, title, content, updateForm} = this.props
     return (
       //아래 내용들은 materialize에 있는 라이브러리와 클래스를 활용한 것 입니다.
       //materialize 의 grid부분을 참고해 주세요.
-      <div className="Note col s12 m4 l3">
+      <div className="Note col s12 m4 l3" onClick={this.handleUpdate}>
         <div onClick={this.handleDelete} className="DeleteBtn">
           <div className="DeleteBtn btn-floating btn-large">
             <i id="Icon" className="material-icons">delete</i>
@@ -120,10 +138,21 @@ class Note extends Component {
         </div>
         <div className="card yellow lighten-4">
           <div className="card-content black-text">
-            <span className="card-title">
-            [{id}] {title}
-            </span>
+            <span className="card-title">[{id}] {title}</span>
             <p>{content}</p>
+            <form onSubmit={this.handleUpdateSubmit} style={{display:updateForm}}>
+              <input
+                type='text'
+                name="title"
+                defaultValue={title}
+              />
+              <input
+                type='text'
+                name="content"
+                defaultValue={content}
+              />
+              <input type='submit' />
+            </form>
           </div>
         </div>
       </div>
