@@ -15,17 +15,20 @@ class Navbar extends Component {
 
 		  <div className="collapse navbar-collapse" id="navbarSupportedContent">
 		    <ul className="navbar-nav mr-auto">
-		      <li className="nav-item active">
+		      <li className="nav-item">
 		        {/* 
 					Link 컴포넌트를 이용해 url을 "/"로 변경하고 홈 화면을 렌더링
 		        */}
 		        <Link className="nav-link" to="/">Home</Link>
 		      </li>
 			  <li className="nav-item">
-		        {/* 
-					Link 컴포넌트를 이용해 url을 "/"로 변경하고 홈 화면을 렌더링
-		        */}
 		        <Link className="nav-link" to="/search">Search</Link>
+		      </li>
+			  <li className="nav-item">
+				<Link className="nav-link" to="/category/game">Game</Link>
+		      </li>
+			  <li className="nav-item">
+				<Link className="nav-link" to="/category/lecture">Lecture</Link>
 		      </li>
 		    </ul>
 		  </div>
