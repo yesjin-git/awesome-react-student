@@ -5,11 +5,18 @@ import ContentList from '../component/contentList/ContentList';
 export default class Category extends Component {
     state = {
         contents: [],
-        keyword: this.props.location.pathname.replace('/category/','')
+        keyword: this.props.location.pathname.replace('/category/',''),
+        error: {}
     };
     componentDidMount() {
         this.fatchSearch(this.state.keyword);
     }
+
+    componentDidUpdate(prevProps, prevState) {
+        if(this.props.location.pathname.replace('/category/','') !== prevProps.location.pathname.replace('/category/',''))
+            this.fatchSearch(this.props.location.pathname.replace('/category/',''));
+    }
+
     setContents = (data) => {
         let list = []
         data.items.forEach((item, index) => {
@@ -23,9 +30,15 @@ export default class Category extends Component {
         let maxResults = 30;
         let token = 'AIzaSyC-v1sIG2Wn3YnoD_7_bBS4zPDceDLKmLY';
 
-        const { data } = await axios.get('https://www.googleapis.com/youtube/v3/search?q='+keyword+'&part=snippet&key='+token+'&maxResults='+maxResults);
-        // console.log(data);
-        this.setState({ contents: this.setContents(data) });
+        //예외처리 
+        try {
+            const { data } = await axios.get('https://www.googleapis.com/youtube/v3/search?q='+keyword+'&part=snippet&key='+token+'&maxResults='+maxResults);
+            // console.log(data);
+            this.setState({ contents: this.setContents(data) });
+        } catch (e) {
+            console.log(e)
+            this.setState({error: "error message"})
+        }
     }
     render() {
         // console.log(this.state.contents);
