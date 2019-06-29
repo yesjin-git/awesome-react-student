@@ -10,3 +10,9 @@ npm install create-react-app
 npx create-react-app <name>
 yarn start
 ```
+
+```
+yarn add redux react-redux
+```
+
+https://storybook.js.org/docs/guides/guide-react/
