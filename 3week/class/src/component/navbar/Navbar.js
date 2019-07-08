@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link, NavLink } from 'react-router-dom';//화면 이동을 위해 Link를 react-router-dom에서 불러옴
+import { Link } from 'react-router-dom';//화면 이동을 위해 Link를 react-router-dom에서 불러옴
 import './Navbar.css';
 
 //상단 메뉴를 가지고 있는 컴포넌트
@@ -20,6 +20,15 @@ class Navbar extends Component {
 					Link 컴포넌트를 이용해 url을 "/"로 변경하고 홈 화면을 렌더링
 		        */}
 		        <Link className="nav-link" to="/">Home</Link>
+		      </li>
+					<li className="nav-item active">
+						{/* 
+					Link 컴포넌트를 이용해 url을 "/"로 변경하고 홈 화면을 렌더링
+		        */}
+		        <Link className="nav-link" to="/search">Search</Link>
+		      </li>
+					<li className="nav-item active">
+						<Link className="nav-link" to="/game">Game</Link>
 		      </li>
 		    </ul>
 		  </div>
