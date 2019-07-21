@@ -1,18 +1,29 @@
-import React, { Component } from "react";
-//react를 사용하기 위해서 react 라이브러리에서 React와 Component를 호출함
+import React, { Component, Fragment } from 'react';
+import './Counter.css';
 
-//Counter 컴포넌트를 생성 하고 Component를 상속
 class Counter extends Component {
-  //jsx를 화면에 그려주는 함수
+  state = {
+    initNum : 0
+  }
+
+  setNumber = (num)=>{
+    this.setState({
+      initNum : num
+    });
+  }
+  
   render() {
+    const { setNumber } = this;
+    const { initNum } = this.state;
+    const { interval } = this.props;
+    
     return (
-      //두개 이상의 엘리먼트를 return 할때는 반드시 div로 감싸야 한다.
-      <div>
-        <h1>Counter</h1>
-        <div>값: {this.props.number}</div>
-        <button onClick={this.props.handleIncrease}>+</button>
-        <button onClick={this.props.handleDecrease}>-</button>
-      </div>
+      <Fragment>
+        <p className="txt_result">값: {initNum}</p>
+        <button className="btn_comm" onClick={() => setNumber(interval + initNum)}>증감 +</button>
+        <button className="btn_comm" onClick={() => setNumber(initNum - interval)}>감소 -</button>
+        <button className="btn_comm" onClick={() => setNumber(0)}>초기화</button>
+      </Fragment>
     );
   }
 }

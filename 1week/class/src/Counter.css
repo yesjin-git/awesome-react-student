@@ -1,0 +1,26 @@
+.section_main {
+  width: 600px;
+  margin: 100px auto 0;  
+  text-align:center;
+}
+.btn_comm {
+  display: inline-block;
+  min-width: 140px;
+  padding: 14px 10px;
+  font-size:16px;
+  line-height:20px;
+  color:#000;
+  border: 2px solid #eee;
+  vertical-align: top;
+  cursor:pointer;
+}
+
+.btn_comm + .btn_comm{
+  margin-left:10px;
+}
+
+.txt_result {
+  font-size:16px;
+  line-height:20px;
+  color:#000
+}
