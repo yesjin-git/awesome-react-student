@@ -10,6 +10,7 @@ export class NoteTitle extends Component{
                 value={this.props.title}
                 onChange={this.props.handleChange}
                 onFocus={this.props.handleFocus}
+                onBlur={this.props.handleBlur}
             />
             // </div>
         )

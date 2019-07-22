@@ -6,7 +6,7 @@ class Writing extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      isFocused: false,
+      id: -1,
       title: "",
       content: ""
     }
@@ -26,7 +26,7 @@ class Writing extends Component {
       <form onSubmit={this.handleSubmit}>
         <WritingTitle {...writingTitleProps}/>
         {/* <WritingTitle title={this.state.title} handleChange={this.handeChange}/> */}
-        {this.state.isFocused && <WritingContent {...writingContentProps}/>}
+        {this.props.isFocused === this.state.id && <WritingContent {...writingContentProps}/>}
         {/* {renderWritingContent} */}
         <input type='submit' />
       </form>
@@ -45,12 +45,15 @@ class Writing extends Component {
   }
 
   handleFocus = (e) =>{
-    if (!this.state.isFocused) {
-      this.setState({
-        isFocused: true
-      })
-    }
+    this.props.focus(this.state.id)
   }
+  // handleFocus = (e) =>{
+  //   if (!this.state.isFocused) {
+  //     this.setState({
+  //       isFocused: true
+  //     })
+  //   }
+  // }
 }
 
 

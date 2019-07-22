@@ -7,58 +7,40 @@ class Note extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      isFocused: false,
-      id: "",
-      title: "",
-      content: ""
+      id: this.props.id,
+      title: this.props.title,
+      content: this.props.content
     }
-  }
-  // componentDidUpdate(){
-  //   this.setState({
-  //     id:this.props.id,
-  //     title:this.props.title,
-  //     content:this.props.content
-  //   })
-  // }
-  componentDidMount(){
-    this.setState({
-      id:this.props.id,
-      title:this.props.title,
-      content:this.props.content
-    })
   }
   handleDelete = (e) =>{
-    this.props.delete(this.state.id)
+    this.props.delete(this.props.id)
   }
   handleFocus = (e) =>{
-      if (!this.state.isFocused) {
-      this.setState({
-          isFocused: true
-      })
-    }
+    this.props.focus(this.props.id)
   }
   handleChange = (e) => {
+    // console.log(e.target.value)
     this.setState({
       [e.target.name]: e.target.value
     })
   }
-
   handleSubmit = (e) => {
-    this.props.update(this.state.id, this.state.title, this.state.content)
+    this.props.update(this.props.id, this.state.title, this.state.content)
     e.preventDefault()
   }
   render() {
     const noteTitleProps = {
+      id : this.props.id,
       title : this.state.title,
       handleChange: this.handleChange,
-      handleFocus: this.handleFocus
+      handleFocus: this.handleFocus,
     }
     const noteContentProps = {
+      id : this.props.id,
       content : this.state.content,
       handleChange: this.handleChange,
     }
-
-    const { id, title, content } = this.state
+    // console.log(this.props.isFocused, this.state.id)
     return (
       <form onSubmit={this.handleSubmit}>
         <div className="Note col s12 m4 l3">
@@ -69,13 +51,12 @@ class Note extends Component {
           </div>
           <div className="card yellow lighten-4" >
             <div className="card-content black-text">
-                {id}
               <span className="card-title">
                 <NoteTitle {...noteTitleProps}/> 
               </span>
-              <p>
-                {this.state.isFocused && <NoteContent {...noteContentProps}/>}
-              </p>
+              <div>
+                {this.props.isFocused === this.state.id && <NoteContent {...noteContentProps}/>}
+              </div>
             </div>
           </div>
         </div>
