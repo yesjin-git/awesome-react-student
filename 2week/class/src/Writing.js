@@ -43,6 +43,7 @@ class Writing extends Component {
     this.props.save(this.state.title, this.state.content)
     e.preventDefault()
   }
+
   handleFocus = (e) =>{
     if (!this.state.isFocused) {
       this.setState({
