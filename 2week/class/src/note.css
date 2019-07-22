@@ -1,0 +1,16 @@
+/* //note.css */
+.Note {
+  position: relative;
+  /* width: 50% */
+}
+
+.DeleteBtn {
+  position: absolute;
+  left: 80%;
+  top: -5%;
+}
+
+#Icon {
+  vertical-align: middle;
+  font-size: 2.0rem;
+}

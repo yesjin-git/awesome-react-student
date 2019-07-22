@@ -1,94 +1,54 @@
-import React, { Component } from 'react'
-import Notes from 'Notes'
-// import Lists from 'Lists'
+import React, {Component} from "react"
+import Writing from './Writing.js'
+import Note from './Note.js'
+import "materialize-css"
+import "materialize-css/dist/css/materialize.min.css"
 
 class App extends Component {
-  constructor(props){
+  constructor(props) {
     super(props)
     this.state = {
-
+      //state의 초기값을 설정합니다.
+      savedNotes: [ {id: 0, title: "title1", content: "default1"}, 
+                    {id: 1, title: "title2", content: "default2"}
+                  ]
     }
   }
+
+  save = (title, content) => {
+    //설계한 함수의 상태를 확인하기 위해 save를 표시하도록 해봅시다.
+    console.log(title + " and " + content + " is soaved")
+    const {savedNotes} = this.state
+    const noteId = savedNotes.length
+    this.setState({
+      savedNotes:[
+        ...savedNotes,
+        {id: noteId, title: title, content: content}
+      ]
+    })
+  }
+  delete = (id) => {
+    // console.log(id)
+    const {savedNotes} = this.state
+    const filteredNotes = savedNotes.filter((n) => n.id !== id)
+    // let cnt = 0;
+    filteredNotes.map((n, index) => n.id = index) 
+    // console.log(filteredNotes)
+    this.setState({
+      savedNotes:filteredNotes
+    })
+  }
+
   render() {
+    console.log(this.state.savedNotes)
     return (
-      <div>
-        <Notes/>
-        {/* <Lists/> */}
+      <div className='App'>
+        <Writing save={this.save} />
+        {this.state.savedNotes.map((note, index)=>(
+          <Note id={note.id} title={note.title} content={note.content} delete={this.delete} key={index}/>
+        ))}
       </div>
     )
   }
 }
 export default App
-
-
-
-// import React, {Component} from "react"
-
-// class App extends Component {
-//   constructor(props) {
-//     super(props)
-//     this.state = {
-//       //state의 초기값을 설정합니다.
-//       savedNotes: [{content: "default1"}, {content: "default2"}]
-//     }
-//   }
-
-//   save = (content) => {
-//     //설계한 함수의 상태를 확인하기 위해 save를 표시하도록 해봅시다.
-//     console.log(content + "is saved")
-//   }
-
-//   render() {
-//     return (
-//       <div className='App'>
-//         <Writing save={this.save} />
-//         {/* 원래 노트를 여러개 보내므로, Notes라고 하는게 좋겠지만 추후에 Note 컴포넌트로 활용할 예정이기 때문에 Note로 명명해 줍시다.*/}
-//         <Note content={this.state.savedNotes[0].content} />
-//       </div>
-//     )
-//   }
-// }
-
-// class Writing extends Component {
-//   constructor(props) {
-//     super(props)
-//     this.state = {
-//       content: ""
-//     }
-//   }
-
-//   handleChange = (e) => {
-//     console.log("changed")
-//   }
-
-//   handleSubmit = (e) => {
-//     this.props.save("content")
-//   }
-
-//   render() {
-//     return (
-//       <form onSubmit={this.handleSubmit}>
-//         <input
-//           type='text'
-//           value={this.state.content}
-//           onChange={this.handleChange}
-//         />
-//         <input type='submit' />
-//       </form>
-//     )
-//   }
-// }
-
-// class Note extends Component {
-//   render() {
-//     const { content } = this.props
-
-//     return (
-//       <div>
-//         {content}
-//       </div>
-//     )
-//   }
-// }
-
-// export default App
