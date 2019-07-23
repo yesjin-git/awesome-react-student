@@ -1,6 +1,6 @@
 import React, {Component} from "react"
-import {WritingTitle} from "./WritingTitle"
-import {WritingContent} from "./WritingContent.js"
+import WritingTitle from "./WritingTitle"
+import WritingContent from "./WritingContent.js"
 
 export default class Writing extends Component {
   state = {

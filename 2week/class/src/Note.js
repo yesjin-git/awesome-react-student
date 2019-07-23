@@ -1,6 +1,6 @@
 import React, {Component} from "react"
-import {NoteTitle} from "./NoteTitle"
-import {NoteContent} from "./NoteContent.js"
+import NoteTitle from "./NoteTitle"
+import NoteContent from "./NoteContent.js"
 import './note.css'
 
 export default class Note extends Component {
