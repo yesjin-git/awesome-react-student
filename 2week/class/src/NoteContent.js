@@ -1,17 +1,18 @@
-import React, {Component} from "react"
+import React, {Component, Fragment} from "react"
 
 export class NoteContent extends Component{
     render(){
         return (
-            <div className='input-field'>
+            <Fragment>
                 <input
                 type='text'
                 name='content'
                 value={this.props.content}
                 onChange={this.props.handleChange}
+                // onBlur={this.props.handleBlur}
                 />
                 <input type='submit' />
-            </div>
+            </Fragment>
         )
     }
 }

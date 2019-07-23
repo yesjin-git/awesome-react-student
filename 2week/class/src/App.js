@@ -12,19 +12,13 @@ class App extends Component {
                     {id: 1, title: "title2", content: "default2"}
                   ],
       maxid:1,
-      isFocused:'',
+      activatedId:'',
     }
-  }
-  focus = (id) => {
-    // console.log(id)
-    this.setState({
-      isFocused: id,
-    })
   }
   save = (title, content) => {
     const {savedNotes} = this.state
     const noteId = this.state.maxid+1
-    console.log(noteId + " and " +  title + " and " + content + " is saved")
+    // console.log(noteId + " and " +  title + " and " + content + " is saved")
     this.setState({
       savedNotes:[
         ...savedNotes,
@@ -34,7 +28,7 @@ class App extends Component {
     })
   }
   update = (id, title, content) => {
-    console.log(id + " and " +  title + " and " + content + " is updated")
+    // console.log(id + " and " +  title + " and " + content + " is updated")
     const {savedNotes} = this.state
     savedNotes.map(n =>{
       if (n.id === id){
@@ -49,28 +43,45 @@ class App extends Component {
   }
 
   delete = (id) => {
-    console.log(id + " is deleted")
+    // console.log(id + " is deleted")
     const {savedNotes} = this.state
     const filteredNotes = savedNotes.filter(n=> n.id !== id)
-    // let cnt = 0
-    // filteredNotes.map(n=>n.id = cnt++)
     this.setState({
       savedNotes:filteredNotes
     })
   }
 
   render() {
-    console.log(this.state.savedNotes)
+    // console.log(this.state.activatedId)
     return (
-      <div className='App'>
-        <Writing isFocused={this.state.isFocused} save={this.save} focus={this.focus}/>
+      <div className='App' style={{border:'solid blue', height:'100%', minHeight:'100vh'}} onClick={this.handleClick}>
+        <Writing save={this.save} />
         {this.state.savedNotes.map((note)=>(
-            <Note id={note.id} key={note.id} 
-            title={note.title} content={note.content} isFocused={this.state.isFocused}
-            delete={this.delete} update={this.update} focus={this.focus}/>
+            <Note id={note.id} key={note.id} title={note.title} content={note.content} 
+            delete={this.delete} update={this.update} activatedId={this.state.activatedId}/>
         ))}
       </div>
     )
+  }
+  handleClick =(e) =>{
+    if (e.target.className==="App") {
+      this.setState({
+        activatedId:'',
+      })
+    }
+    if (!e.target.id){
+      // console.log(e.target.parentElement.id)
+      this.setState({
+        activatedId: e.target.parentElement.id
+      })
+    }
+    else{
+      // console.log(e.target.id)
+      this.setState({
+        activatedId: e.target.id
+      })
+    }
+    // console.log(e.target)
   }
 }
 export default App

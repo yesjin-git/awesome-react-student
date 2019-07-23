@@ -9,7 +9,8 @@ export class WritingTitle extends Component{
                 name='title'
                 value={this.props.title}
                 onChange={this.props.handleChange}
-                onFocus={this.props.handleFocus}
+                // onFocus={this.props.handleFocus}
+                // onBlur={this.props.handleBlur}
             />
             </div>
         )

@@ -6,9 +6,11 @@ class Writing extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      id: -1,
+      // id: -1,
       title: "",
-      content: ""
+      content: "",
+      isFocused: false,
+      activated: 0,
     }
   }
 
@@ -16,18 +18,18 @@ class Writing extends Component {
     const writingTitleProps = {
       title : this.state.title,
       handleChange : this.handleChange,
-      handleFocus: this.handleFocus
+      // handleFocus: this.handleFocus,
     }
     const writingContentProps = {
       Content : this.state.content,
-      handleChange : this.handleChange
+      handleChange : this.handleChange,
+      // handleBlur: this.handleBlur
     }
+    // onFocus={this.handleFocus} onBlur={this.handleBlur}
     return (
       <form onSubmit={this.handleSubmit}>
         <WritingTitle {...writingTitleProps}/>
-        {/* <WritingTitle title={this.state.title} handleChange={this.handeChange}/> */}
-        {this.props.isFocused === this.state.id && <WritingContent {...writingContentProps}/>}
-        {/* {renderWritingContent} */}
+        <WritingContent {...writingContentProps}/>
         <input type='submit' />
       </form>
     )
@@ -43,17 +45,31 @@ class Writing extends Component {
     this.props.save(this.state.title, this.state.content)
     e.preventDefault()
   }
-
-  handleFocus = (e) =>{
-    this.props.focus(this.state.id)
+  handleClick = (e) =>{
+    console.log(this.state.activated)
+    if (!this.state.activated) {
+      this.setState({
+        activated: true
+      })
+    }
   }
-  // handleFocus = (e) =>{
-  //   if (!this.state.isFocused) {
-  //     this.setState({
-  //       isFocused: true
-  //     })
-  //   }
-  // }
+  handleFocus = (e) =>{
+    console.log('handleFocus')
+    if (!this.state.isFocused) {
+      this.setState({
+        isFocused: true
+      })
+    }
+  }
+
+  handleBlur = (e) =>{
+    console.log('blur')
+    if (!this.state.isBlurred){
+      this.setState({
+        isFocused: false
+      })
+    }
+  }
 }
 
 

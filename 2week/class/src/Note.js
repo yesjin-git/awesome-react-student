@@ -15,11 +15,7 @@ class Note extends Component {
   handleDelete = (e) =>{
     this.props.delete(this.props.id)
   }
-  handleFocus = (e) =>{
-    this.props.focus(this.props.id)
-  }
   handleChange = (e) => {
-    // console.log(e.target.value)
     this.setState({
       [e.target.name]: e.target.value
     })
@@ -28,19 +24,43 @@ class Note extends Component {
     this.props.update(this.props.id, this.state.title, this.state.content)
     e.preventDefault()
   }
+  handleClick = (e) =>{
+    // console.log(this.state.activated)
+    if (!this.state.activated) {
+      this.setState({
+        activated: true
+      })
+    }
+  }
+  handleFocus = (e) =>{
+    if (!this.state.isFocused) {
+      this.setState({
+        isFocused: true
+      })
+    }
+  }
+  handleBlur = (e) =>{
+    // console.log('blur')
+    if (!this.state.isBlurred){
+      this.setState({
+        isFocused: false
+      })
+    }
+  }
   render() {
     const noteTitleProps = {
       id : this.props.id,
       title : this.state.title,
       handleChange: this.handleChange,
-      handleFocus: this.handleFocus,
+      // handleFocus: this.handleFocus,
     }
     const noteContentProps = {
       id : this.props.id,
       content : this.state.content,
       handleChange: this.handleChange,
+      // handleBlur: this.handleBlur
     }
-    // console.log(this.props.isFocused, this.state.id)
+    console.log(typeof this.props.activatedId, typeof this.props.id)
     return (
       <form onSubmit={this.handleSubmit}>
         <div className="Note col s12 m4 l3">
@@ -50,13 +70,9 @@ class Note extends Component {
             </div>
           </div>
           <div className="card yellow lighten-4" >
-            <div className="card-content black-text">
-              <span className="card-title">
-                <NoteTitle {...noteTitleProps}/> 
-              </span>
-              <div>
-                {this.props.isFocused === this.state.id && <NoteContent {...noteContentProps}/>}
-              </div>
+            <div className="card-content black-text" id={this.props.id}>
+              <NoteTitle {...noteTitleProps}/> 
+              {this.props.activatedId*1 === this.props.id && <NoteContent {...noteContentProps}/>}
             </div>
           </div>
         </div>
