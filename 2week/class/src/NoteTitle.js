@@ -1,19 +1,19 @@
 import React, {Component} from "react"
 
-export class NoteTitle extends Component{
-    render(){
-        return (
-            // <div className='input-field'>
-            <input
-                type='text'
-                name='title'
-                value={this.props.title}
-                onChange={this.props.handleChange}
-                // onFocus={this.props.handleFocus}
-            />
-            // </div>
-        )
+export default class NoteTitle extends Component{
+  render(){
+    if (!this.props.activated) {
+      return <h3>{this.props.propsTitle}</h3>
+    } 
+    else{
+      return (
+        <input
+          type='text'
+          name='title'
+          value={this.props.title}
+          onChange={this.props.handleChange}
+        />
+      )
     }
+  }
 }
-// export const WritingTitle = (n) => {
-// class Writing extends Component {

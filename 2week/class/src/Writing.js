@@ -2,34 +2,28 @@ import React, {Component} from "react"
 import {WritingTitle} from "./WritingTitle"
 import {WritingContent} from "./WritingContent.js"
 
-class Writing extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      // id: -1,
+export default class Writing extends Component {
+  state = {
       title: "",
       content: "",
-      isFocused: false,
-      activated: 0,
-    }
   }
 
   render() {
+    const { content, title } = this.state
+    const { handleChange } = this
+    
     const writingTitleProps = {
-      title : this.state.title,
-      handleChange : this.handleChange,
-      // handleFocus: this.handleFocus,
+      title,
+      handleChange,
     }
     const writingContentProps = {
-      Content : this.state.content,
-      handleChange : this.handleChange,
-      // handleBlur: this.handleBlur
+      content,
+      handleChange,
     }
-    // onFocus={this.handleFocus} onBlur={this.handleBlur}
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={this.handleSubmit} id={-1}>
         <WritingTitle {...writingTitleProps}/>
-        <WritingContent {...writingContentProps}/>
+        {this.props.activatedId*1 === -1 && <WritingContent {...writingContentProps}/>}
         <input type='submit' />
       </form>
     )
@@ -43,34 +37,10 @@ class Writing extends Component {
 
   handleSubmit = (e) => {
     this.props.save(this.state.title, this.state.content)
+    this.setState({
+      title: "",
+      content: "",
+    })
     e.preventDefault()
   }
-  handleClick = (e) =>{
-    console.log(this.state.activated)
-    if (!this.state.activated) {
-      this.setState({
-        activated: true
-      })
-    }
-  }
-  handleFocus = (e) =>{
-    console.log('handleFocus')
-    if (!this.state.isFocused) {
-      this.setState({
-        isFocused: true
-      })
-    }
-  }
-
-  handleBlur = (e) =>{
-    console.log('blur')
-    if (!this.state.isBlurred){
-      this.setState({
-        isFocused: false
-      })
-    }
-  }
 }
-
-
-export default Writing

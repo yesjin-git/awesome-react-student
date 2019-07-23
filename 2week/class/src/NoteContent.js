@@ -1,20 +1,22 @@
 import React, {Component, Fragment} from "react"
 
-export class NoteContent extends Component{
-    render(){
-        return (
-            <Fragment>
-                <input
-                type='text'
-                name='content'
-                value={this.props.content}
-                onChange={this.props.handleChange}
-                // onBlur={this.props.handleBlur}
-                />
-                <input type='submit' />
-            </Fragment>
-        )
+export default class NoteContent extends Component{
+  render(){
+    if (!this.props.activated) {
+      return <p>{this.props.propsContent}</p>
+    } 
+    else{
+      return (
+        <Fragment>
+          <input
+          type='text'
+          name='content'
+          value={this.props.content}
+          onChange={this.props.handleChange}
+          />
+          <input type='submit' />
+        </Fragment>
+      )
     }
+  }
 }
-// export const WritingTitle = (n) => {
-// class Writing extends Component {

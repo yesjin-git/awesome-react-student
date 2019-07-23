@@ -12,23 +12,22 @@ class App extends Component {
                     {id: 1, title: "title2", content: "default2"}
                   ],
       maxid:1,
-      activatedId:'',
+      activatedId:undefined,
     }
   }
   save = (title, content) => {
     const {savedNotes} = this.state
     const noteId = this.state.maxid+1
-    // console.log(noteId + " and " +  title + " and " + content + " is saved")
     this.setState({
       savedNotes:[
         ...savedNotes,
         {id: noteId, title: title, content: content}
       ],
-      maxid:noteId
+      maxid:noteId,
+      activatedId:undefined,
     })
   }
   update = (id, title, content) => {
-    // console.log(id + " and " +  title + " and " + content + " is updated")
     const {savedNotes} = this.state
     savedNotes.map(n =>{
       if (n.id === id){
@@ -38,12 +37,12 @@ class App extends Component {
       }
     })
     this.setState({
-      savedNotes:savedNotes
+      savedNotes,
+      activatedId:undefined,
     })
   }
 
   delete = (id) => {
-    // console.log(id + " is deleted")
     const {savedNotes} = this.state
     const filteredNotes = savedNotes.filter(n=> n.id !== id)
     this.setState({
@@ -52,10 +51,9 @@ class App extends Component {
   }
 
   render() {
-    // console.log(this.state.activatedId)
     return (
       <div className='App' style={{border:'solid blue', height:'100%', minHeight:'100vh'}} onClick={this.handleClick}>
-        <Writing save={this.save} />
+        <Writing save={this.save} activatedId={this.state.activatedId}/>
         {this.state.savedNotes.map((note)=>(
             <Note id={note.id} key={note.id} title={note.title} content={note.content} 
             delete={this.delete} update={this.update} activatedId={this.state.activatedId}/>
@@ -64,24 +62,16 @@ class App extends Component {
     )
   }
   handleClick =(e) =>{
-    if (e.target.className==="App") {
-      this.setState({
-        activatedId:'',
-      })
-    }
     if (!e.target.id){
-      // console.log(e.target.parentElement.id)
       this.setState({
         activatedId: e.target.parentElement.id
       })
     }
-    else{
-      // console.log(e.target.id)
+    else {
       this.setState({
         activatedId: e.target.id
       })
     }
-    // console.log(e.target)
   }
 }
 export default App

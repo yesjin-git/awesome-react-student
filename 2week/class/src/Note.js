@@ -3,13 +3,14 @@ import {NoteTitle} from "./NoteTitle"
 import {NoteContent} from "./NoteContent.js"
 import './note.css'
 
-class Note extends Component {
+export default class Note extends Component {
   constructor(props) {
     super(props)
+    const { id, title, content } = this.props
     this.state = {
-      id: this.props.id,
-      title: this.props.title,
-      content: this.props.content
+      id,
+      title,
+      content,
     }
   }
   handleDelete = (e) =>{
@@ -24,45 +25,28 @@ class Note extends Component {
     this.props.update(this.props.id, this.state.title, this.state.content)
     e.preventDefault()
   }
-  handleClick = (e) =>{
-    // console.log(this.state.activated)
-    if (!this.state.activated) {
-      this.setState({
-        activated: true
-      })
-    }
-  }
-  handleFocus = (e) =>{
-    if (!this.state.isFocused) {
-      this.setState({
-        isFocused: true
-      })
-    }
-  }
-  handleBlur = (e) =>{
-    // console.log('blur')
-    if (!this.state.isBlurred){
-      this.setState({
-        isFocused: false
-      })
-    }
-  }
+  
   render() {
+    const {id, title, content} = this.state
+    const {handleChange} = this
+    const noteTitleState = {
+      id,
+      title,
+      handleChange,
+    }
     const noteTitleProps = {
-      id : this.props.id,
-      title : this.state.title,
-      handleChange: this.handleChange,
-      // handleFocus: this.handleFocus,
+      propsTitle: this.props.title
+    }
+    const noteContentState = {
+      id,
+      content,
+      handleChange,
     }
     const noteContentProps = {
-      id : this.props.id,
-      content : this.state.content,
-      handleChange: this.handleChange,
-      // handleBlur: this.handleBlur
+      propsContent: this.props.content
     }
-    console.log(typeof this.props.activatedId, typeof this.props.id)
+
     return (
-      <form onSubmit={this.handleSubmit}>
         <div className="Note col s12 m4 l3">
           <div className="DeleteBtn">
             <div className="DeleteBtn btn-floating btn-large" onClick={this.handleDelete}>
@@ -70,22 +54,12 @@ class Note extends Component {
             </div>
           </div>
           <div className="card yellow lighten-4" >
-            <div className="card-content black-text" id={this.props.id}>
-              <NoteTitle {...noteTitleProps}/> 
-              {this.props.activatedId*1 === this.props.id && <NoteContent {...noteContentProps}/>}
-            </div>
+            <form className="card-content black-text" id={this.props.id} onSubmit={this.handleSubmit}>
+              <NoteTitle {...noteTitleState} {...noteTitleProps} activated={this.props.activatedId*1 === this.props.id}/>
+              <NoteContent {...noteContentState} {...noteContentProps} activated={this.props.activatedId*1 === this.props.id}/>
+            </form>
           </div>
         </div>
-      </form>
-    
-
-      // <div className='col s12 m6 l3'>
-      //   <div className='card yellow lighten-4'>
-      //     <span className='card-title'>{title}</span>
-      //     <div className='card-content black-text'>{content}</div>
-      //   </div>
-      // </div>
     )
   }
 }
-export default Note 
