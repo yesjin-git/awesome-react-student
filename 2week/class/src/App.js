@@ -1,70 +1,77 @@
 import React, {Component} from "react"
+import Writing from './Writing.js'
+import Note from './Note.js'
+import "materialize-css"
+import "materialize-css/dist/css/materialize.min.css"
 
 class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      //state의 초기값을 설정합니다.
-      savedNotes: [{content: "default1"}, {content: "default2"}]
+      savedNotes: [ {id: 0, title: "title1", content: "default1"}, 
+                    {id: 1, title: "title2", content: "default2"}
+                  ],
+      maxid:1,
+      activatedId:undefined,
     }
   }
+  save = (title, content) => {
+    const {savedNotes} = this.state
+    const noteId = this.state.maxid+1
+    this.setState({
+      savedNotes:[
+        ...savedNotes,
+        {id: noteId, title: title, content: content}
+      ],
+      maxid:noteId,
+      activatedId:undefined,
+    })
+  }
+  update = (id, title, content) => {
+    const {savedNotes} = this.state
+    savedNotes.map(n =>{
+      if (n.id === id){
+        return (n.title=title, n.content=content)
+      }else{
+        return n
+      }
+    })
+    this.setState({
+      savedNotes,
+      activatedId:undefined,
+    })
+  }
 
-  save = (content) => {
-    //설계한 함수의 상태를 확인하기 위해 save를 표시하도록 해봅시다.
-    console.log(content + "is saved")
+  delete = (id) => {
+    const {savedNotes} = this.state
+    const filteredNotes = savedNotes.filter(n=> n.id !== id)
+    this.setState({
+      savedNotes:filteredNotes
+    })
   }
 
   render() {
     return (
-      <div className='App'>
-        <Writing save={this.save} />
-        {/* 원래 노트를 여러개 보내므로, Notes라고 하는게 좋겠지만 추후에 Note 컴포넌트로 활용할 예정이기 때문에 Note로 명명해 줍시다.*/}
-        <Note content={this.state.savedNotes[0].content} />
+      <div className='App' style={{border:'solid blue', height:'100%', minHeight:'100vh'}} onClick={this.handleClick}>
+        <Writing save={this.save} activatedId={this.state.activatedId}/>
+        {this.state.savedNotes.map((note)=>(
+            <Note id={note.id} key={note.id} title={note.title} content={note.content} 
+            delete={this.delete} update={this.update} activatedId={this.state.activatedId}/>
+        ))}
       </div>
     )
   }
-}
-
-class Writing extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      content: ""
+  handleClick =(e) =>{
+    if (!e.target.id){
+      this.setState({
+        activatedId: e.target.parentElement.id
+      })
+    }
+    else {
+      this.setState({
+        activatedId: e.target.id
+      })
     }
   }
-
-  handleChange = (e) => {
-    console.log("changed")
-  }
-
-  handleSubmit = (e) => {
-    this.props.save("content")
-  }
-
-  render() {
-    return (
-      <form onSubmit={this.handleSubmit}>
-        <input
-          type='text'
-          value={this.state.content}
-          onChange={this.handleChange}
-        />
-        <input type='submit' />
-      </form>
-    )
-  }
 }
-
-class Note extends Component {
-  render() {
-    const { content } = this.props
-
-    return (
-      <div>
-        {content}
-      </div>
-    )
-  }
-}
-
 export default App
