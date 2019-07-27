@@ -13,6 +13,7 @@ yarn start
 
 ```
 yarn add redux react-redux
+yarn add redux react-redux redux-thunk
 ```
 
 https://storybook.js.org/docs/guides/guide-react/
