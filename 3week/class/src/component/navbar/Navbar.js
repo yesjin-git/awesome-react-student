@@ -18,10 +18,18 @@ class Navbar extends Component {
 		      <li className="nav-item active">
 		        {/* 
 					Link 컴포넌트를 이용해 url을 "/"로 변경하고 홈 화면을 렌더링
-		        */}
-		        <Link className="nav-link" to="/">Home</Link>
+				*/}
+		        <Link className="nav-link" to="/">
+					Home
+				</Link>
+		        
 		      </li>
-		    </ul>
+				<li className="nav-item active">
+				<Link className="nav-link" to="/search">
+					Search
+				</Link>
+				</li>
+			</ul>
 		  </div>
 		</nav>
       </div>
