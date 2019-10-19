@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom'; //node_modules에 있는 리액트 돔을 가져옴
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
