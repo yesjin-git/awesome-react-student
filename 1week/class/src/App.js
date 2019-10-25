@@ -18,7 +18,8 @@ class App extends Component {
     //number의 값을 state로 선언한다.
     //state는 상태를 저장하는 변수로 현재 컴포넌트에서 데이터를 관리하거나 ui부분의 상태를 관리할때 사용
     this.state = {
-      number: 0
+      number: 0,
+      number2: 0
     };
   }
 
@@ -33,10 +34,40 @@ class App extends Component {
     });
   };
 
+  //함수 실행시 number2값이 2 증가
+  handleIncreaseDouble = () => {
+    const { number2 } = this.state;
+
+    this.setState({
+      number2: number2 + 2
+    });
+  };
+
   //함수 실행 시 number값이 1감소
   handleDecrease = () => {
     this.setState(({ number }) => ({
       number: number - 1
+    }));
+  };
+
+  //함수 실행 시 number2값이 2감소
+  handleDecreaseDouble = () => {
+    this.setState(({ number2 }) => ({
+      number2: number2 - 2
+    }));
+  };
+
+  //함수 실행시 number값 0으로 리셋
+  handleReset = () => {
+    this.setState(({ number }) => ({
+      number: 0
+    }));
+  };
+
+  //함수 실행시 number값 0으로 리셋
+  handleReset2 = () => {
+    this.setState(({ number2 }) => ({
+      number2: 0
     }));
   };
 
@@ -58,7 +89,13 @@ class App extends Component {
           <Counter
             handleIncrease={this.handleIncrease}
             handleDecrease={this.handleDecrease}
+            handleReset={this.handleReset}
             number={this.state.number}
+
+            handleIncreaseDouble={this.handleIncreaseDouble}
+            handleDecreaseDouble={this.handleDecreaseDouble}
+            handleReset2={this.handleReset2}
+            number2={this.state.number2}
           />
         </header>
       </div>

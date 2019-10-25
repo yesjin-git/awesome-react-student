@@ -12,6 +12,13 @@ class Counter extends Component {
         <div>값: {this.props.number}</div>
         <button onClick={this.props.handleIncrease}>+</button>
         <button onClick={this.props.handleDecrease}>-</button>
+        <button onClick={this.props.handleReset}>reset</button>
+
+        <h1>Counter 2</h1>
+        <div>값: {this.props.number2}</div>
+        <button onClick={this.props.handleIncreaseDouble}>+</button>
+        <button onClick={this.props.handleDecreaseDouble}>-</button>
+        <button onClick={this.props.handleReset2}>reset</button>
       </div>
     );
   }
