@@ -5,6 +5,7 @@ import logo from "./logo.svg";
 import "./App.css";
 //css를 불러옴 파일 이름은 달라도 된다.
 import Counter from "./Counter.js"; // 카운터를 표시해줄 컴포넌트 호출
+import Clock from "./Clock.js";
 
 //Component라는 react의 class를 상속 받음
 class App extends Component {
@@ -97,6 +98,8 @@ class App extends Component {
             handleReset2={this.handleReset2}
             number2={this.state.number2}
           />
+
+          <Clock text={"Timer"} number={0} />
         </header>
       </div>
     );
