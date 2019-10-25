@@ -8,6 +8,7 @@ class Counter extends Component {
     const { mode } = this.props;
     return (
       //두개 이상의 엘리먼트를 return 할때는 반드시 div로 감싸야 한다.
+
       <>
         <div>
           <h1>Counter</h1>
@@ -22,6 +23,7 @@ class Counter extends Component {
           <button onClick={e => this.props.resetCounter(mode)}>reset</button>
         </div>
       </>
+
     );
   }
 }
