@@ -2,9 +2,13 @@
 import React, { Component } from "react";
 //react를 사용하기 위해서 react 라이브러리에서 React와 Component를 호출함
 import logo from "./logo.svg";
-import "./App.css";
+import "./App.css"; 
+import Clock from "./Clock";
 //css를 불러옴 파일 이름은 달라도 된다.
 import Counter from "./Counter.js"; // 카운터를 표시해줄 컴포넌트 호출
+import Counter2 from "./Counter2.js";
+import Clear from "./Clear.js";
+import Clear2 from "./Clear2.js";
 
 //Component라는 react의 class를 상속 받음
 class App extends Component {
@@ -17,28 +21,11 @@ class App extends Component {
 
     //number의 값을 state로 선언한다.
     //state는 상태를 저장하는 변수로 현재 컴포넌트에서 데이터를 관리하거나 ui부분의 상태를 관리할때 사용
-    this.state = {
-      number: 0
-    };
+    
+ 
+
   }
 
-  //함수 실행시 number값이 1 증가
-  handleIncrease = () => {
-    const { number } = this.state;
-
-    //this.setState는 state의 값을 변경할때 사용 하는 함수
-    //this.state.number 에 직접 데이터를 변경할 수 없다.
-    this.setState({
-      number: number + 1
-    });
-  };
-
-  //함수 실행 시 number값이 1감소
-  handleDecrease = () => {
-    this.setState(({ number }) => ({
-      number: number - 1
-    }));
-  };
 
   //jsx를 화면에 보여줄때 render함수를 호출해서 return을 해야 한다.
   //jsx는 js를 html처럼 사용할수 있게 해주는 언어?이다.
@@ -55,13 +42,23 @@ class App extends Component {
           props는 상위컴포넌트에서 하위컴포넌트로 데이터와 함수를 전달할때 사용 하는 속성으로 
           props로 데이터를 받은 컴포넌트에서는 데이터 변경이 불가 하다.
         */}
+
+          
+          {/* <Counter
+            ss={1}
+          /> 
+
           <Counter
-            handleIncrease={this.handleIncrease}
-            handleDecrease={this.handleDecrease}
-            number={this.state.number}
+            ss={2}
+          />  */}
+
+          <Clock
+            
           />
+         
+     
         </header>
-      </div>
+      </div> 
     );
   }
 }
