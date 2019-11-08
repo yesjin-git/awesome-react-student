@@ -16,7 +16,7 @@ const FullContentLink = (props) => {
             </a>)
     }
 
-class Content extends Component {
+class Content extends Component { 
 	constructor(props) {
 	  super(props);
 
@@ -48,7 +48,7 @@ class Content extends Component {
   render() {
     return (
       <div className="content" onMouseEnter={() => this.onHover()} onMouseLeave={() => this.onUnHover()}>
-      {this.props.onClick?
+      {this.props.onClick? 
         (<FullContentLink onChangeFullContent={this.onChangeFullContent}>{this.displayImg()}</FullContentLink>):
         (<ContentView id={this.props.content.id}>{this.displayImg()}</ContentView>)}
       </div>
