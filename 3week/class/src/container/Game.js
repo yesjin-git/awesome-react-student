@@ -41,12 +41,11 @@ export default class Search extends Component {
  componentDidMount(){ 
   this.fetchSearch("game"); 
  }
-     
 
   render() {
     const { keyword, contents } = this.state;
     const { handleChange, handleSubmit } = this;
-    return (
+    return ( 
       <div>
         <div className="content"> 
           <ContentList contents={contents} />
