@@ -21,6 +21,12 @@ class Navbar extends Component {
 		        */}
 		        <Link className="nav-link" to="/">Home</Link>
 		      </li>
+			  <li className="nav-item active">
+		        <Link className="nav-link" to="/search">Search</Link>
+		      </li>
+			  <li className="nav-item active">
+		        <Link className="nav-link" to="/Game">Game</Link>
+		      </li>
 		    </ul>
 		  </div>
 		</nav>
