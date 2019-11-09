@@ -4,7 +4,9 @@
 README.md
 /assets
 */node_modules
+node_modules/
 
+ 
 # dependencies
 
 /1week
