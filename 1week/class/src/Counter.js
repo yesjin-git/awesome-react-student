@@ -1,20 +1,42 @@
-import React, { Component } from "react";
-//react를 사용하기 위해서 react 라이브러리에서 React와 Component를 호출함
+import React, {Component} from "react";
 
-//Counter 컴포넌트를 생성 하고 Component를 상속
 class Counter extends Component {
-  //jsx를 화면에 그려주는 함수
-  render() {
-    return (
-      //두개 이상의 엘리먼트를 return 할때는 반드시 div로 감싸야 한다.
-      <div>
-        <h1>Counter</h1>
-        <div>값: {this.props.number}</div>
-        <button onClick={this.props.handleIncrease}>+</button>
-        <button onClick={this.props.handleDecrease}>-</button>
-      </div>
-    );
-  }
+    state = {
+        num : 0
+        //num : this.props.number + 1      props로는 변경 불가능
+    };
+    // 람다식 : this, binding 에 관하여 공부하기
+    handleInc = () => {
+        this.setState ({
+           num : this.state.num + this.props.number    // state로는 변경 가능
+        });
+    };
+
+    handleDec = () => {
+        this.setState ({
+           num : this.state.num - this.props.number     // state로는 변경 가능
+        });
+    };
+
+    handleZero = () => {
+        this.setState ({
+           num : 0     // state로는 변경 가능
+        });
+    };
+
+    render() {
+        return (
+            <div>
+                counter
+                <p>{this.state.num}</p>
+                <p>
+                    <button onClick={this.handleInc}>+</button>
+                    <button onClick={this.handleDec}>-</button>
+                    <button onClick={this.handleZero}>reset</button>
+                </p>
+            </div>
+        );     // 함수 실행이 아니라 그 결과값이 필요하기 때문에 handleInc() 에서 괄호를 뺀다
+    }
 }
 
 export default Counter;
