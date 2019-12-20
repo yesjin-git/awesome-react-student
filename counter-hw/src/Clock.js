@@ -30,6 +30,10 @@ class Clock extends Component {
         this.start()
     }
 
+    componentWillUnmount() {
+        this.stop()
+    }
+
     render() {
         return (
             <div>
