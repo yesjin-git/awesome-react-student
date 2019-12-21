@@ -3,7 +3,7 @@ import React, { Component } from "react";
 //react를 사용하기 위해서 react 라이브러리에서 React와 Component를 호출함
 import logo from "./logo.svg";
 import "./App.css";
-//css를 불러옴 파일 이름은 달라도 된다.
+//css를 불러옴 파일 이름은 달라도 된다.dfdfdfdf
 import Counter from "./Counter.js"; // 카운터를 표시해줄 컴포넌트 호출
 
 //Component라는 react의 class를 상속 받음
