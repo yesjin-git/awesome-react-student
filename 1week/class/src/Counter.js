@@ -13,6 +13,7 @@ class Counter extends Component {
         <button onClick={this.props.handleIncrease}>+</button>
         <button onClick={this.props.handleDecrease}>-</button>
       </div>
+      
     );
   }
 }
