@@ -2,6 +2,7 @@
 */.vscode
 # README.md
 # /assets
+**/node_modules
 
 # dependencies
 /1week/counter/node_modules
