@@ -14,6 +14,7 @@ class App extends Component {
     super(props);
     //상속을 받을때 this를 사용하기 위해서는 super를 선언해준다.
     //super를 사용하면 부모 클래스의 constructor를 호출해서 데이터를 초기화 해준다.
+    //ttestadasdasdsdgit
 
     //number의 값을 state로 선언한다.
     //state는 상태를 저장하는 변수로 현재 컴포넌트에서 데이터를 관리하거나 ui부분의 상태를 관리할때 사용
