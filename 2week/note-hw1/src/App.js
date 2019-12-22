@@ -95,6 +95,9 @@ class App extends Component {
             <div>
                 <Writing
                     editType="NEW"
+                    title=""
+                    content=""
+                    id=""
                     save={this.saveNotes}
                     done={this.finishEditing}
                 /><br/><br/>
