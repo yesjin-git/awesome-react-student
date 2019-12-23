@@ -1,0 +1,20 @@
+
+.Note {
+    position: relative;
+}
+
+.DeleteBtn {
+    position: absolute;
+    left: 80%;
+    top: -5%;
+    z-index: 2;
+}
+
+#Icon {
+    vertical-align: middle;
+    font-size: 1em;
+}
+
+.btn-floating {
+    position: static!important;
+}
