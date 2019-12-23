@@ -6,20 +6,28 @@ class Clock extends Component {
     };
     //생명주기를 활용해서 작업하기
     componentDidMount(){
+        // this.interValId = setInterval(()=>{
+        //     this.setState({date:new Date()});
+        // },1000);
+        this.startFunc();
+    }
+    componentWillUnmount(){
+        // clearInterval(this.interValId);
+        this.stopFunc();
+    }
+    startFunc=()=>{
         this.interValId = setInterval(()=>{
             this.setState({date:new Date()});
         },1000);
     }
-    componentWillUnmount(){
-        clearInterval(this.interValId);
-    }
-    startFunc=()=>{
-        this.componentDidMount();
-    }
     stopFunc=()=>{
-        // clearInterval(this.interValId);
-        this.componentWillUnmount();
+        clearInterval(this.interValId);
+        // this.componentWillUnmount();
     }
+
+    //반대로 작업했음
+    //lifeCycle 내부에 직접 이벤트를 작성하면 안되는 건가?
+    //직접 작성하면 매서드 여러개일때 관리 안되서 분리하는것 같네
 
     render(){
         return (
