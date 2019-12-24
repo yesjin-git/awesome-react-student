@@ -25,16 +25,22 @@ class Note extends Component {
      *
      * @param e
      */
-    handleDelete = (e) => {
+    handleDelete = () => {
         this.props.del(this.props.id)
     }
 
-    handleFocusIn = (e) => {
+    /**
+     * event handler for focusIn
+     */
+    handleFocusIn = () => {
         this.setState({
             editable: true
         })
     }
 
+    /**
+     * this function is called when the editing is done.
+     */
     finishEditing = () => {
         this.setState({
             editable: false
@@ -62,6 +68,7 @@ class Note extends Component {
                                         title={this.props.title}
                                         content={this.props.content}
                                         editType="NOTE"
+                                        showContent="true"
                                         id={this.props.id}
                                         done={this.finishEditing}
                                     />

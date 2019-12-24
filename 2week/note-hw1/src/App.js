@@ -98,6 +98,7 @@ class App extends Component {
                     title=""
                     content=""
                     id=""
+                    showContent="false"
                     save={this.saveNotes}
                     done={this.finishEditing}
                 /><br/><br/>
