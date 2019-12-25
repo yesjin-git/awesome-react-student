@@ -47,6 +47,7 @@ class App extends Component {
         <div className='row'>
           {this.state.savedNotes.map((note, index) => (
             <Note
+                
               delete={this.delete}
               title={note.title}
               content={note.content}
