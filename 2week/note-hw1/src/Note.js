@@ -17,6 +17,7 @@ class Note extends Component {
         this.state = {
             editable: false
         }
+        this.textInput = React.createRef()
     }
 
 
@@ -36,6 +37,25 @@ class Note extends Component {
         this.setState({
             editable: true
         })
+
+        document.addEventListener("click", this.handleOutsideClick, false)
+    }
+
+
+    /**
+     * event handler for outside click
+     *
+     * @param e
+     */
+    handleOutsideClick = (e) => {
+        if (this.node != null && this.node.contains(e.target)) {
+            return
+        }
+
+        if (this.textInput.current != null) {
+            this.textInput.current.handleSubmit(e)
+            document.removeEventListener("click", this.handleOutsideClick, false)
+        }
     }
 
     /**
@@ -53,7 +73,7 @@ class Note extends Component {
 
         return (
             <div className="Note col s12 m4 l3">
-                <div className="card yellow lighten-4" onClick={this.handleFocusIn}>
+                <div className="card yellow lighten-4" onClick={this.handleFocusIn} ref={node => this.node = node}>
                     <div className="DeleteBtn">
                         <div className="DeleteBtn btn-floating btn-middle red right">
                             <i id="Icon" className="material-icons" onClick={this.handleDelete}>delete</i>
@@ -71,6 +91,7 @@ class Note extends Component {
                                         showContent="true"
                                         id={this.props.id}
                                         done={this.finishEditing}
+                                        ref={this.textInput}
                                     />
                                     <br/><br/>
                                 </div>
