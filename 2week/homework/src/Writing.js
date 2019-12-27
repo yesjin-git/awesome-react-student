@@ -30,18 +30,27 @@ class Writing extends Component {
 
   handleFocus = (e) => {
     if (!this.state.isWritingTitleFocused) {
-      console.log('test')
       this.setState({
         isWritingTitleFocused: true
       })
     }
   }
 
+  handleFocusOut = (e) => {
+    if (this.state.isWritingTitleFocused) {
+      this.setState({
+        isWritingTitleFocused: false
+      })
+    }
+  }
+
+
   render() {
     const writingTitleProps = {
       title: this.state.title,
       handleChange: this.handleChange,
-      handleFocus: this.handleFocus
+      handleFocus: this.handleFocus,
+      handleFocusOut: this.handleFocusOut
     }
 
     const writingContentProps = {
@@ -58,7 +67,6 @@ class Writing extends Component {
         {/* Props가 길어지는 경우 가시성을 위해 객체로 정의해, 아래와 같이 넘겨줄 수 있습니다.  */}
           <WritingTitle {...writingTitleProps} />
           {isWritingTitleFocused && <WritingContent {...writingContentProps} />}
-          <input type='submit' value='Submit' />
         </form>
       </div>
     )
@@ -73,7 +81,7 @@ function WritingTitle(props) {
         name='title'
         value={props.title}
         onChange={props.handleChange}
-        onFocus={props.handleFocus}
+        onFocus={props.handleFocus} 
       />
     </div>
   )
@@ -88,7 +96,9 @@ function WritingContent(props) {
         value={props.content}
         onChange={props.handleChange}
       />
+      <input type='submit' value='Submit' />
     </div>
+    
   )
 }
 
