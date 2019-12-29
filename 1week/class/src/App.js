@@ -38,6 +38,7 @@ class App extends Component {
     this.setState(({ number }) => ({
       number: number - 1
     }));
+    
   };
 
   //jsx를 화면에 보여줄때 render함수를 호출해서 return을 해야 한다.
