@@ -4,6 +4,7 @@ import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Navbar from "./component/navbar/Navbar"
 import MainView from "./container/MainView"
+import Game from "./container/Game"
 import Search from "./container/Search"
 import ContentView from "./component/contentView/ContentView"
 
@@ -15,6 +16,7 @@ const Main = () => (
           <Route exact path="/" component={MainView}/>
           <Route path="/view/:id" component={ContentView} />
           <Route path="/search" component={Search}/>
+          <Route path="/game" component={Game}/>
     </Switch>
 )
 

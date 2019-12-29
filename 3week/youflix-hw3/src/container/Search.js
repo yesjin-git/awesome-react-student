@@ -48,7 +48,7 @@ export default class Search extends Component {
                 <form className="" onSubmit={this.handleSubmit}>
                     <div className="form-group row align-items-center justify-content-center">
                         <div className="col-md-3">
-                            <label>검색</label>
+                            <label><b>Search : </b></label>
                             <input type="text"
                                    value={this.state.keyword}
                                    onChange={(e) => {this.setState({keyword: e.target.value})}}/>

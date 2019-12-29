@@ -20,6 +20,9 @@ export default class Navbar extends Component {
                             <li className="nav-item active">
                                 <Link className="nav-link" to="/Search">Search</Link>
                             </li>
+                            <li className="nav-item active">
+                                <Link className="nav-link" to="/Game">Game</Link>
+                            </li>
                         </ul>
                     </div>
                 </nav>
