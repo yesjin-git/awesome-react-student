@@ -26,9 +26,6 @@ export default class Search extends Component {
         })
     }
 
-
-
-
     fetchSearch = async (keyword) => {
         const maxResults = 30
         const token = 'AIzaSyC-v1sIG2Wn3YnoD_7_bBS4zPDceDLKmLY'
