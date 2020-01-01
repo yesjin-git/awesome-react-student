@@ -98,7 +98,7 @@ class MainView extends Component {
 //유튜브에 ajax 통신을 해서 데이터를 불러 오는 함수
   fetchYoutube = () => {
   	//axios를 이용해서 유튜브에 영상 목록을 달라고 요청
-    axios.get('https://www.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&key=AIzaSyC-v1sIG2Wn3YnoD_7_bBS4zPDceDLKmLY&maxResults=21')
+    axios.get('https://www.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&key=AIzaSyASlUxKp9-sRxTnJUghY0f9D0ia0Iqp91U&maxResults=21')
     .then(({data}) => {//유튜브로 부터 요청한 데이터를 전달 받으면 then으로 데이터를 받음
     					//디스트럭쳐링을 통해서 유튜브로부터 받은 데이터중에서 data만 가져옴 
 
