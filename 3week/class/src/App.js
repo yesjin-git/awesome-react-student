@@ -4,8 +4,11 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';//bootstrap css를 사용하기 위해서 불러옵니다.
 import Navbar from './component/navbar/Navbar.js';
 import MainView from './container/MainView.js';
+import Search from "./container/Search.js";
+import Game from "./container/Game.js"
 import ContentView from './component/contentView/ContentView.js';
 import {Switch, Route } from 'react-router-dom'//router를 사용하기 위해서 react router dom 불러옵니다.
+
 
 //router를 감싸고 있는 함수형 컴포넌트
 const Main =()=>(//라우팅할때 url이 중복되는것을 막기 위해서 switch 사용
@@ -21,7 +24,8 @@ const Main =()=>(//라우팅할때 url이 중복되는것을 막기 위해서 sw
           ":이름"" 이렇게 설정하면 url을 /view/123, /view/555 라고 해도 ContetnView 컴포넌트를 렌더링하게됩니다.
       */}
 			<Route  path="/view/:id" component={ContentView}></Route>
-
+            <Route path="/search" component={Search}></Route>
+            <Route path="/game" component={Game}></Route>
 		</Switch>
 	)
 

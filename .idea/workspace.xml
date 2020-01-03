@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="1255281e-c30c-4905-bb67-ce8a6a2b4e12" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/3week/class/src/container/Search.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/3week/class/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/3week/class/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/3week/class/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/3week/class/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/3week/class/src/component/navbar/Navbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/3week/class/src/component/navbar/Navbar.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IgnoredFileRootStore">
+    <option name="generatedRoots">
+      <set>
+        <option value="$PROJECT_DIR$/.idea" />
+      </set>
+    </option>
+  </component>
+  <component name="ProjectId" id="1VHMPTAMzDZ3GRBcpm903BOuTjT" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="1255281e-c30c-4905-bb67-ce8a6a2b4e12" name="Default Changelist" comment="" />
+      <created>1576905542645</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1576905542645</updated>
+      <workItem from="1576905543835" duration="2371000" />
+      <workItem from="1576908787969" duration="1478000" />
+      <workItem from="1577067268260" duration="159000" />
+      <workItem from="1577100067095" duration="5705000" />
+      <workItem from="1577417847924" duration="4777000" />
+      <workItem from="1577469426745" duration="265000" />
+      <workItem from="1577494986345" duration="1899000" />
+      <workItem from="1577505305640" duration="597000" />
+      <workItem from="1577628609459" duration="295000" />
+      <workItem from="1577682774079" duration="791000" />
+    </task>
+    <task id="LOCAL-00001" summary="counter 컴포넌트 재사용은 하지 못했습니다.">
+      <created>1576905774841</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1576905774841</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="counter 컴포넌트 재사용은 하지 못했습니다." />
+    <option name="LAST_COMMIT_MESSAGE" value="counter 컴포넌트 재사용은 하지 못했습니다." />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="284" y="37" key="CommitChangelistDialog2" timestamp="1576905774630">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="284" y="37" key="CommitChangelistDialog2/0.0.1440.900@0.0.1440.900" timestamp="1576905774630" />
+    <state x="64" y="190" key="Vcs.Push.Dialog.v2" timestamp="1576905800537">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="64" y="190" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1576905800537" />
+    <state x="122" y="219" width="683" height="476" key="find.popup" timestamp="1577419243855">
+      <screen x="0" y="23" width="1440" height="832" />
+    </state>
+    <state x="122" y="212" width="683" height="476" key="find.popup/0.0.1440.900@0.0.1440.900" timestamp="1576906056520" />
+    <state x="122" y="219" width="683" height="476" key="find.popup/0.23.1440.832@0.23.1440.832" timestamp="1577419243855" />
+    <state x="334" y="117" width="671" height="732" key="search.everywhere.popup" timestamp="1577468290439">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="2034" y="140" width="1192" height="878" key="search.everywhere.popup/0.0.1440.900/1440.0.2560.1080@1440.0.2560.1080" timestamp="1577103653654" />
+    <state x="334" y="117" width="671" height="732" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1577468290439" />
+    <state x="385" y="179" width="670" height="676" key="search.everywhere.popup/0.23.1440.832@0.23.1440.832" timestamp="1576909730634" />
+  </component>
+</project>
