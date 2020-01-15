@@ -180,7 +180,7 @@ class App extends Component {
                 content={note.content}   
                 key={note.id}      
                 delete={this.delete}
-                edit={this.edit} 
+                edit={this.edit}
                 normal={this.normal} 
                 status={note.status}   
                 editSave={this.editSave} 
